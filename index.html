@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>古韵雅集 · 每日练嘴 & 500句背下来</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; overflow-x: hidden; }
+body {
+  font-family: "STKaiti", "KaiTi", "楷体", "STSong", "宋体", serif;
+  background: #2a1f17;
+  color: #2c1810;
+  user-select: none;
+}
+
+.paper {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at top, rgba(255, 240, 200, 0.05), transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(0,0,0,0.5), transparent 60%),
+    linear-gradient(135deg, #2a1f17 0%, #1a1208 100%);
+  overflow: hidden;
+}
+
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255, 220, 180, 0.08), transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 140, 100, 0.08), transparent 40%);
+  pointer-events: none;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+
+.slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92vw;
+  height: 92vh;
+  max-width: 1400px;
+  max-height: 920px;
+  background: linear-gradient(135deg, #f5ead0 0%, #ebe0c4 50%, #dccba5 100%);
+  background-image:
+    linear-gradient(135deg, #f5ead0 0%, #ebe0c4 50%, #dccba5 100%),
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(180, 140, 100, 0.03) 2px, rgba(180, 140, 100, 0.03) 4px);
+  background-blend-mode: multiply;
+  border-radius: 8px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 10px 30px rgba(0,0,0,0.4),
+    inset 0 0 80px rgba(180, 140, 100, 0.15);
+  padding: 35px 70px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.slide.active { display: flex; animation: fadeIn 0.4s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0.3; transform: translate(-50%, -50%) scale(0.98); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 2px solid #8b6f47;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.slide::after {
+  content: "";
+  position: absolute;
+  inset: 25px;
+  border: 1px solid #8b6f47;
+  border-radius: 2px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #8b6f47;
+  pointer-events: none;
+  z-index: 5;
+}
+.corner.tl { top: 25px; left: 25px; border-right: none; border-bottom: none; }
+.corner.tr { top: 25px; right: 25px; border-left: none; border-bottom: none; }
+.corner.bl { bottom: 25px; left: 25px; border-right: none; border-top: none; }
+.corner.br { bottom: 25px; right: 25px; border-left: none; border-top: none; }
+
+.slide-title {
+  font-family: "STKaiti", "KaiTi", "楷体", serif;
+  font-size: 48px;
+  color: #5c2e0a;
+  text-align: center;
+  margin-bottom: 18px;
+  letter-spacing: 14px;
+  position: relative;
+  font-weight: 700;
+  text-shadow: 2px 2px 0 rgba(180, 140, 100, 0.3);
+  flex-shrink: 0;
+}
+
+.slide-title::before, .slide-title::after {
+  content: "❋";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b6f47;
+  font-size: 26px;
+}
+.slide-title::before { left: 60px; }
+.slide-title::after { right: 60px; }
+
+.content {
+  flex: 1;
+  font-size: 22px;
+  line-height: 1.85;
+  color: #2c1810;
+  letter-spacing: 2px;
+  text-align: justify;
+  overflow-y: auto;
+  padding: 10px 30px 10px 50px;
+  position: relative;
+}
+
+.content::before {
+  content: "";
+  position: absolute;
+  left: 32px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, #8b6f47 8%, #8b6f47 92%, transparent);
+}
+
+.content p {
+  margin-bottom: 18px;
+  text-indent: 2em;
+  position: relative;
+  padding-left: 0;
+}
+
+.content p:last-child { margin-bottom: 0; }
+
+.content p::before {
+  content: "?";
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  color: #c9a96e;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ===== 哲理金句 - 优雅简洁样式 ===== */
+.content p.philosophy-final {
+  text-indent: 0;
+  text-align: center;
+  margin: 30px 0 20px 0;
+  padding: 0;
+  font-family: "STKaiti", "KaiTi", "楷体", serif;
+}
+
+.content p.philosophy-final::before { content: none; }
+
+.content p.philosophy-final .phil-line {
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  font-style: italic;
+  color: #8b2a0e;
+  letter-spacing: 6px;
+  line-height: 1.8;
+  margin: 6px 0;
+  text-shadow: 1px 1px 0 rgba(212, 175, 55, 0.3);
+}
+
+.content p.philosophy-final .phil-line:first-child::before {
+  content: "「 ";
+  color: #c9a96e;
+  font-style: normal;
+  margin-right: 4px;
+}
+
+.content p.philosophy-final .phil-line:last-child::after {
+  content: " 」";
+  color: #c9a96e;
+  font-style: normal;
+  margin-left: 4px;
+}
+
+/* 结尾短句 - 同样简洁 */
+.content p.philosophy-ending {
+  text-indent: 0;
+  text-align: center;
+  margin: 30px 0 20px 0;
+  font-size: 28px;
+  font-weight: 600;
+  font-style: italic;
+  color: #8b2a0e;
+  letter-spacing: 6px;
+  position: relative;
+  padding: 12px 0;
+  text-shadow: 1px 1px 0 rgba(212, 175, 55, 0.3);
+}
+
+.content p.philosophy-ending::before { content: none; }
+
+.content p.philosophy-ending::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #c9a96e, transparent);
+}
+
+.content::-webkit-scrollbar { width: 6px; }
+.content::-webkit-scrollbar-track { background: transparent; }
+.content::-webkit-scrollbar-thumb { background: #8b6f47; border-radius: 3px; }
+
+.seal {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #c0392b;
+  background: rgba(192, 57, 43, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #c0392b;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.2;
+  transform: rotate(-5deg);
+  box-shadow: inset 0 0 8px rgba(192, 57, 43, 0.2);
+  z-index: 5;
+}
+
+.cover {
+  background: linear-gradient(135deg, #2a1f17 0%, #1a1208 100%);
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 70px 90px;
+}
+
+.cover-top, .cover-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cover-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  flex: 0 0 auto;
+}
+
+.cover-title {
+  font-size: 120px;
+  color: #d4af37;
+  letter-spacing: 30px;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  animation: glow 3s ease-in-out infinite;
+  line-height: 1.1;
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+  50% { text-shadow: 0 0 60px rgba(212, 175, 55, 0.8), 0 0 90px rgba(212, 175, 55, 0.4); }
+}
+
+.cover-subtitle {
+  font-size: 36px;
+  color: #c9a96e;
+  letter-spacing: 15px;
+  opacity: 0.9;
+}
+
+.cover-decoration {
+  width: 300px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+}
+
+.cover-author {
+  font-size: 22px;
+  color: #a08550;
+  letter-spacing: 8px;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.cover-quote {
+  font-size: 20px;
+  color: #c9a96e;
+  letter-spacing: 4px;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.sentences-page {
+  display: none;
+  flex-direction: column;
+  padding: 30px 50px 30px;
+}
+
+.sentences-page.active { display: flex; }
+
+.sentences-header {
+  text-align: center;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+  padding: 10px 0;
+  position: relative;
+}
+
+.sentences-header::before, .sentences-header::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #8b6f47, transparent);
+}
+
+.sentences-header::before { top: 0; }
+.sentences-header::after { bottom: 0; }
+
+.sentences-header .title {
+  font-size: 52px;
+  color: #5c2e0a;
+  letter-spacing: 16px;
+  font-weight: 700;
+  display: inline-block;
+  text-shadow: 3px 3px 0 rgba(180, 140, 100, 0.4), 0 0 20px rgba(212, 175, 55, 0.3);
+  position: relative;
+  padding: 0 20px;
+}
+
+.sentences-header .title::before {
+  content: "?";
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: #c9a96e;
+}
+
+.sentences-header .title::after {
+  content: "?";
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: #c9a96e;
+}
+
+.sentences-header .subtitle {
+  font-size: 18px;
+  color: #6b4423;
+  letter-spacing: 5px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.sentences-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.sentence-row {
+  display: grid;
+  grid-template-columns: 50px 1fr 340px;
+  gap: 18px;
+  align-items: center;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 22px;
+  line-height: 1.5;
+  position: relative;
+  background: linear-gradient(90deg, rgba(255, 248, 225, 0.7) 0%, rgba(255, 248, 225, 0.5) 50%, rgba(255, 248, 225, 0.3) 100%);
+  box-shadow: 0 2px 6px rgba(139, 111, 71, 0.15);
+  border: 1px solid rgba(139, 111, 71, 0.3);
+}
+
+.sentence-row:nth-child(odd) {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.08) 50%, rgba(212, 175, 55, 0.05) 100%);
+  border-left: 5px solid #8b6f47;
+}
+
+.sentence-row:nth-child(even) {
+  background: linear-gradient(90deg, rgba(139, 111, 71, 0.12) 0%, rgba(139, 111, 71, 0.06) 50%, rgba(139, 111, 71, 0.03) 100%);
+  border-left: 5px solid #c9a96e;
+}
+
+.sentence-num {
+  color: #5c2e0a;
+  font-weight: 800;
+  text-align: center;
+  font-size: 24px;
+  font-family: "STSong", "宋体", serif;
+  padding: 4px 0;
+  background: linear-gradient(to bottom, #f5ead0, #dccba5);
+  border-radius: 4px;
+  border: 2px solid #8b6f47;
+  box-shadow: inset 0 0 4px rgba(180, 140, 100, 0.3);
+}
+
+.sentence-text {
+  color: #2c1810;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 24px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 0 rgba(180, 140, 100, 0.2);
+}
+
+.sentence-expr {
+  color: #5c2e0a;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  font-size: 20px;
+  border-left: 3px solid #c9a96e;
+  padding-left: 16px;
+  line-height: 1.5;
+}
+
+.section-title {
+  text-align: center;
+  padding: 100px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-title h1 {
+  font-size: 80px;
+  color: #5c2e0a;
+  letter-spacing: 30px;
+  margin-bottom: 50px;
+}
+
+.section-title p {
+  font-size: 24px;
+  color: #6b4423;
+  letter-spacing: 8px;
+  line-height: 2.5;
+}
+
+.section-decoration {
+  width: 400px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #8b6f47, transparent);
+  margin: 50px auto;
+}
+
+.nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 10px;
+  background: rgba(42, 31, 23, 0.7);
+  padding: 8px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.nav button {
+  background: rgba(212, 175, 55, 0.1);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 6px 12px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.nav button:hover {
+  background: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+.nav .page-info {
+  color: #d4af37;
+  font-size: 14px;
+  padding: 6px 8px;
+  letter-spacing: 2px;
+  align-self: center;
+}
+
+.sidebar {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: rgba(42, 31, 23, 0.95);
+  z-index: 200;
+  transition: left 0.4s ease;
+  padding: 30px 20px;
+  overflow-y: auto;
+  border-right: 2px solid rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.sidebar.open { left: 0; }
+
+.sidebar h2 {
+  color: #d4af37;
+  font-size: 24px;
+  letter-spacing: 8px;
+  margin-bottom: 25px;
+  text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 15px;
+}
+
+.sidebar h3 {
+  color: #c9a96e;
+  font-size: 18px;
+  letter-spacing: 4px;
+  margin: 15px 0 8px 0;
+  padding: 10px 12px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
+  border-left: 3px solid #d4af37;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+.sidebar h3:hover {
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.25), transparent);
+  color: #d4af37;
+}
+
+.sidebar h3 .toggle {
+  font-size: 12px;
+  transition: transform 0.3s;
+  color: #d4af37;
+}
+
+.sidebar h3.collapsed .toggle { transform: rotate(-90deg); }
+
+.sidebar h3 .count {
+  font-size: 11px;
+  color: #a08550;
+  font-weight: 400;
+  margin-left: 8px;
+  letter-spacing: 1px;
+}
+
+.sidebar-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px 2px;
+  overflow: hidden;
+  max-height: 2000px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+#sent-group {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.sidebar-group.collapsed { max-height: 0; opacity: 0; }
+
+.sidebar-item {
+  color: #c9a96e;
+  font-size: 11px;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s;
+  display: block;
+  margin: 0;
+  letter-spacing: 0;
+  text-decoration: none;
+  border-left: none;
+  background: rgba(212, 175, 55, 0.06);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.sidebar-item:hover {
+  background: rgba(212, 175, 55, 0.25);
+  color: #f0d77b;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+}
+
+.sidebar-item.current {
+  background: rgba(212, 175, 55, 0.3);
+  color: #f0d77b;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.6);
+}
+
+.toggle-sidebar {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 80px;
+  background: rgba(42, 31, 23, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-left: none;
+  color: #d4af37;
+  cursor: pointer;
+  z-index: 250;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 8px 8px 0;
+  transition: all 0.3s;
+}
+
+.toggle-sidebar:hover { background: rgba(42, 31, 23, 1); width: 35px; }
+
+.progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(to right, #d4af37, #c9a96e);
+  z-index: 100;
+  transition: width 0.4s;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 768px) {
+  .slide { padding: 20px 25px; }
+  .slide-title { font-size: 28px; letter-spacing: 6px; }
+  .content { font-size: 18px; line-height: 1.6; padding: 10px 15px 10px 30px; }
+  .content p { text-indent: 2em; margin-bottom: 12px; }
+  .content p.philosophy-final .phil-line { font-size: 22px; }
+  .content p.philosophy-ending { font-size: 22px; }
+  .cover-title { font-size: 60px; }
+  .sentence-row { grid-template-columns: 36px 1fr 1fr; font-size: 14px; padding: 10px 12px; gap: 12px; }
+  .sentence-num { font-size: 18px; }
+  .sentence-text { font-size: 16px; }
+  .sentence-expr { font-size: 14px; padding-left: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="paper">
+<div class="slide cover active" data-index="0">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="cover-top">
+    <div class="cover-quote">— 古诗词风格 —</div>
+  </div>
+  <div class="cover-middle">
+    <div class="cover-title">古韵雅集</div>
+    <div class="cover-decoration"></div>
+    <div class="cover-subtitle">每日练嘴 &middot; 五百佳句</div>
+    <div class="cover-decoration"></div>
+    <div class="cover-author">— 诵千古绝句，品百味人生 —</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-quote">— 愿你出走半生，归来仍是少年 —</div>
+  </div>
+</div><div class="slide section-title" data-index="1">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <h1>每日练嘴</h1>
+  <div class="section-decoration"></div>
+  <p>六十二篇 &middot; 每日一练 &middot; 持之以恒</p>
+  <p>愿你以梦为马，不负韶华</p>
+</div><div class="slide" data-index="2">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>花有重开日，人无再少年。</p><p>当我们看不清脚下的路时，就请比别人坚持得更久一些，我们每一个普通的改变都会使我们变得不普通。</p><p>我许东风知我意，吹尽心中意难平。少年虽有英雄梦，奈何青春不回头。莫忘少年凌云志，曾许人间第一流。</p><p>听闻少年二字，应与平庸相识。</p><p class="philosophy-ending">倘若穷途末路，那便势如破竹。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="3">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生就像一场众人的狂欢，总有形形色色的人穿梭往来，总会发生各种各样的事，而其中冷暖只有自己才能体会。</p><p>只有经过生活的洗礼，我们的内心才能渐渐丰盈，才能对生活有更深层次的理解。以自己喜欢的方式过一生，那是一种美好。</p><p>每个人都想活得快乐，自由，但我们却经常从别人身上寻找自己，而把真正的自己遗忘在角落。你对自己的人生做过何种思考？要知道，读懂人生，才能成就一生。</p><p>苏格拉底曾说：“人生就是一次无法重复的选择。”每个人都会面临来自生活，工作和社会的各种各样的压力与问题，就算生活中有太多的失望，也希望你能试着接受，并且学着不为难自己。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="4">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生谁无年少时，时光给我们最慷慨的馈赠，就是青春。</p><p>青春是山青花欲燃的生命绽放，是绣面芙蓉一笑开的欢快和浪漫，是千古风流今在此的自信昂然，是扶摇直上九万里的铿锵力量，是一生大笑能几回的豪迈和奔放。</p><p>在青春的行走中，我欲穿花寻路，虽然也会遇到困难和迷茫，但这也正铸成了成长的模样，让每一天都创造出更崭新的我们。</p><p>青春总是那么令人神往，它张扬着丈夫至四海，万里犹比邻的少年意气，它蕴含着惜春春去，几点催花雨的悠悠情思，它传递着从此无心爱良夜，任他明月下西楼的诚挚和纯真，他也彰显着松树千年终是朽，槿花一日自为荣的独立自信。它意味着桐花万里丹山路，雏凤清于老风声的美好前途，它践行着鹏北海凤朝阳，又携书剑路茫茫的无尽探索，让我们在美好的时代，书写属于自己的美好青春！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="5">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>千万不要因为看见别人发光，就觉得自己暗淡，他强任他强，清风拂山岗，生活中，人和人的节奏是不一样的，有人三分钟泡面，有人三小时煲汤，你选择了你要的生活方式，就坚定走下去，别胡思乱想。</p><p>每个人的花期是不一样的，所以不必焦虑，别碰到一点压力就把自己搞得不堪重负的样子，成功之前，你这辈子该走的弯路该吃的苦，该撞的南墙，该掉的陷阱，一个都少不了。</p><p>放下纠结，考差了再努力，工作丢了再找，钱没了再挣，朋友没了可以再交，爱情丢了可以再遇，人生本来就一无所有，有什么事不能从头再来呢，不要东张西望，不要受人影响，大胆的往前走，你的光芒终将会被看到。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="6">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>有心栽花花不开，无心插柳柳成荫。生活有时候很有意思，你越是用力证明，越感觉疲惫。越是对一件事的结果产生执念，他就越反着来。</p><p>过度用力，本身就是一种消耗，反而适得其反，用适当的力量，反而能厚积薄发，就像发条上的太紧容易断，该放松时放松，该努力时努力，张弛有度才刚刚好。不骄不躁，抚平心态，才能看到更好的阳光。不要一味的追求，太紧绷的用力，人生最坏的结果不过是大器晚成。生活，其实就像一场马拉松，不在于瞬间的爆发，而在于途中的坚持与享受。</p><p>保持一颗平常心，不以物喜，不以己悲。在顺境中不骄傲自满，在逆境中也不轻易放弃。用一颗平和的心去面对生活中的起起伏伏，你会发现，无论遭遇何种境遇，都能从中找到属于自己的那份宁静与力量。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="7">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>千人同茶不同味，万人同道不同心，这世间最难得的，莫过于一份懂得。我们总怀念少年时的肆意，感叹“欲买桂花同载酒，终不似，少年游”，却忘了“莫道桑榆晚，为霞尚满天”。</p><p>人生如行舟，一程有一程的风景，二十岁的遗憾，三十岁或许能笑着弥补。不必困在过往的执念里，岁月本就白驹过隙，重要的是守住本心，把每一个当下活成诗酒年华。</p><p>远离消耗自己的人，拥抱真实的自己，这不是自私，是对生活的清醒。毕竟，真正定义我们的，从来不是经历，而是我们赋予经历的意义。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="8">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我终于明白，朝花夕拾是什么意思。当你30岁的时候，去买18岁的东西，去20岁想去的地方，已经毫无意义。世界上没有那么多的来日方长，只有世事无常。欲买桂花同载酒，终不似少年游。</p><p>我们总说，等以后，等有钱了，等有时间了，等准备好，可生命最残酷的规则恰恰是：有些窗口只开放一次，你错过的不是一件商品，一次旅行，而是那个时空里独一无二的自己。</p><p>青春的本质不是年龄，而是一种全息的生命感知，那种看到晚霞，就想落泪；听到某首歌，就以为能永远；握住一只手，就敢对抗全世界的敏感。后来我们拥有了更多，却失去了这种全息感知的能力，但你知道吗？这个看似悲伤的发现里，藏着温柔的启示，当我们为“终不似少年游”流泪时，恰恰证明我们心里，还住着那个少年。</p><p>消失不是彻底的消亡，而是化作你灵魂的坐标，那个追不到的人，让你懂得了边界；那份搞砸的工作，塑造了你的任性；那些深夜的眼泪，灌溉了你现在的通透。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="9">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我许东风知我意，吹尽心中意难平。世事如潮，人心如舟，偶有浪涌拍岸，亦有雾锁江汀（tīng）。不必困于过往，不必忧于未行，且将心事付与风，且把愁绪寄与云。檐下听雨，听的是心音；案前煮茶，煮的是清宁。</p><p>纵有千般意难平，亦有东风知我心。不必与他人争短长，只需与自己守清欢。那些深夜辗（zhǎn）转（zhuǎn）的思绪，终会被晨光温柔抚平；那些无人问津的孤独，终会被岁月轻轻相拥。</p><p class="philosophy-final"><span class="phil-line">且将新火试新茶，诗酒趁年华。</span><span class="phil-line">我许东风知我意，吹尽心中意难平。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="10">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>相见时难别亦难，东风无力百花残。春蚕到死丝方尽，蜡炬成灰泪始干。</p><p>在这个车马喧嚣的世界，相遇本就是一种奇迹，而离别却成了常态。我们总以为来日方长，却忘了世事无常，一次转身可能就是一世。东风无力，百花凋零，那份无力感不仅源于对流逝时光的惋惜，更源于对缘分的无法掌控。其实，珍惜眼前人，过好当下事，便是对抗岁月无情最好的解药。愿你我不负相遇，哪怕终有一别，也能在回忆里留下一抹温暖的亮色，不谈亏欠，只谢遇见。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="11">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日一练</div>
+  <div class="content"><p>前路漫漫，亦有星光为伴；风雨兼程，终会遇见晴天。眼下困顿，不过是黎明前的雾霭；此刻平凡，恰是为崛起积蓄力量。莫叹出身平凡，莫惧眼下艰难，你我皆是追光者，终会在自己的时区里绽放光芒。</p><p>且将新火试新茶，诗酒趁年华。</p><p>我们生而普通，但不能丢了锋芒。荆棘丛生，亦可踏成坦途；迷雾重重，终能拨云见日。每个在黑夜里咬牙坚持的你，终将迎来属于自己的破晓时分。心有丘壑，目存山河，少年自有玫瑰与星光。</p><p class="philosophy-ending">最后，且挨过三冬四夏，雪尽后再看梅花。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="12">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>生如蝼蚁，当有鸿鹄之志，命如纸薄，应有不屈之心，大丈夫生居天地间，岂能郁郁久居人下，行动才是治愈恐惧的良药，拖延是滋生懦弱的病菌。</p><p>今日无名小卒，焉知明日不会名震四海。</p><p>每一次跌倒，都是崛起的序曲；每一滴眼泪，都是成长的洗礼，别害怕前路的荆棘，别畏惧旁人的质疑，当你握紧拳头向前冲时，全世界都会为你让路。在黑暗中摸索前行，终将迎来破晓的曙光，书写属于自己的荣耀篇章。</p><p>扛得住风雨，才能见得到彩虹。</p><p class="philosophy-ending">回头看，轻舟已过万重山！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="13">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>山海自有归期，风雨自有相逢，意难平终将和解，万事终将如意。没有不可治愈的伤痛，没有不能结束的沉沦，所有失去的，会以另外一种方式归来，那些我们在意的事情，纠结的地方，放不下的人，可能多年以后，回头再看，根本不算什么。</p><p>曾经一度不理解老人晒太阳，一坐就是半天，长大了才明白，目之所及皆是过往，心之所想皆是回忆，眼之所看皆是遗憾。</p><p class="philosophy-ending">回头看，轻舟已过万重山，向前看，前路漫漫亦灿灿，抬头看，满天星光甚浪漫，低头看，满路荆棘已过半。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="14">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>衣衫褴褛，也有王者之相，三餐不济，也非池中之物，身无分文，岂能断定日后无江之望，今日无名小卒，焉知明日不会名震四海，有人天命加身，有人时机未至。</p><p>他日卧龙终得雨，今朝放鹤且冲天。</p><p>我们生而平凡，但不能甘于平庸，征途虽险，山海可平，每个曾披星戴月的你，终将披荆斩棘，纵有千古，横有八荒，前途似海，来日方长。</p><p class="philosophy-final"><span class="phil-line">十年运道龙井困，一朝得势入青云。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="15">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生最顶级的心态，就是落子无悔。人不可能每一步都正确，选错了就选错了，不要责备当初的自己；如果重来一次，以当时的阅历和心智，你依旧会做出同样的选择。</p><p>旧认知，选不出新答案。</p><p>我们永远不能站在现在的高度，去批判当初懵懂的自己。</p><p class="philosophy-ending">知不足而奋进，望远山而前行，你尽管努力，如果事与愿违，请相信，上天一定另有安排！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="16">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>何时葡萄先熟透，你需静候再静候。何时功成与名就，你要静心再静心，别因眼前的黑暗，放弃远方的曙光；别因他人的否定，丢掉心中的锋芒。有人少年得志，有人大器晚成。</p><p>苦厄难夺凌云志，不死终有出头日！</p><p>别怕路难，别怕天黑，所有的坚持，终会迎来破晓的曙光，你付出的努力，流下的汗水，熬过的孤独，都会在时光里开花结果。</p><p class="philosophy-ending">乾坤未定，你我皆是黑马；风云再起，我辈自当锋芒！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="17">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>出身微寒，未必不能登堂入室；起步卑微，亦可直上九霄。手无寸铁，怎知日后不能执掌乾坤？一时困顿，岂能定论一生输赢。有人早慧，有人晚成，花开各有时，不必争朝夕。你看到的是别人的风光，看不到的是他们曾经的狼狈。</p><p>他日卧龙终得雨，今朝放鹤且冲天。</p><p>真正的强者，不是从不跌倒，而是每次跌倒后都能站得更稳，站得更高。路虽远，行则将至；事虽难，做则可成。别怕起点低，只怕志气短；别怕路遥远，只怕脚不前。</p><p>你熬过的夜，流过的汗，受过的冷眼，终有一天会变成你身上的光。</p><p class="philosophy-ending">时来天地皆同力，运去英雄不自由。但若你不认命，命也奈何不了你。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="18">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>星光不问赶路人，时光不负有心人。人生这条路，没有白走的脚步，也没有白费的努力。</p><p>不必抱怨深夜的孤独，不必焦虑暂时的黯淡，那些在无人问津时默默努力的时光，那些在困境里依然咬牙前行的瞬间，都会在岁月里慢慢沉淀，变成照亮前路的光。上天从不会辜负一个认真生活、拼命奔跑的人，你只管专注赶路，剩下的交给时间。</p><p>前路或许有风雨，或许有坎坷，但只要心怀热爱、步履不停，坚持下去就会有惊喜，熬过去就会有收获。你流下的汗水、付出的真心、守住的初心，终会在某一天，以最好的方式回馈于你。</p><p class="philosophy-final"><span class="phil-line">心有光芒，何惧路长；默默耕耘，终有回响！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="19">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>心有凌云志，步履不停歇。我始终相信，人生从不是一蹴而就的侥幸，而是日积月累的沉淀与坚持。</p><p>它是迷茫时不肯低头的倔强，是低谷里迎难而上的勇气；是跌倒后重新站起的坚韧，是朝着目标步步前行的笃定。成长从不是一帆风顺的坦途，而是历经风雨依旧炙热的初心；是即便前路漫漫，依然敢于乘风破浪的果敢。想要的生活从不会凭空而来，想要的光芒总要靠自己点亮。所以别懈怠，别退缩，拼尽全力去闯，脚踏实地去追。毕竟能靠自己撑起一片天，活成自己喜欢的模样，才是生命最耀眼的勋章。</p><p class="philosophy-final"><span class="phil-line">纵有狂风拔地起，我亦乘风破万里。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="20">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>少年自有少年狂，敢与天公试比高！不必困于眼前的迷茫，也别怕前路的风雨飘摇。</p><p>人生哪有什么一帆风顺？跌倒、迷茫、挫、败，都是成长路上的寻常。但别怕，伤疤是成长的勋章，坚持是破局的力量。那些在深夜里咬着牙熬过去的日子，那些在困境里不肯低头的倔强，终会化作照亮前路的光，让你在追梦的路上，让你追梦的路上，越走越稳，越走越亮。</p><p>你只管大胆往前走，别怕慢，也别怕难。哪怕一路跌跌撞撞，只要初心不改、脚步不停，就一定能活成自己想要的模样。</p><p class="philosophy-final"><span class="phil-line">纵有疾风起，少年不言弃；</span><span class="phil-line">以梦为马，不负韶华！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="21">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>纵有疾风起，人生不言弃，行至水穷处，坐看云起时。</p><p>我们或许会在迷雾中徘徊，在低谷里沉潜，但每一次跌倒，都是为了更有力地站起；每一滴汗水，都在浇灌未来的花期。不必怕前路漫漫，不必惧风雨交加，那些打不倒我们的，终会让我们更加强大。且将新火试新茶，诗酒趁年华。别让犹豫消磨了锐气，别让怯懦困住了脚步，你要相信，那些看似不起眼的日复一日，终会在某天让你看到坚持的意义。哪怕此刻只是微光，也终会汇成星河，照亮属于你的远方。</p><p class="philosophy-final"><span class="phil-line">待到秋来九月八，我花开后百花杀。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="22">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>纵有万般不顺，亦有翻盘之机，哪怕遍体鳞伤，仍有向阳之力。一时的低谷，从不是人生的定局，暂时的蛰伏，只为日后的冲天而起，你吃过的苦、受过的累、熬过的夜，终会化作照亮前路的光，成为你最坚硬的铠甲。</p><p>道阻且长，行则将至，行而不辍，未来可期。</p><p>我们生而热烈，就不该归于平庸，心有丘壑，就不该困于方寸，哪怕前路满是荆棘，也要踏平坎坷成大道，纵使命运百般刁难，也要逆流而上创辉煌，每一次咬牙坚持，都在为人生翻盘蓄力，每一次绝不认输，都在为未来书写奇迹。</p><p class="philosophy-final"><span class="phil-line">乾坤未定，你我皆是黑马；</span><span class="phil-line">乾坤已定，便扭转乾坤！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="23">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>少年自有凌云志，敢乘长风破万浪，哪怕前路满风霜，亦要昂首踏四方。</p><p>不用害怕摔倒受挫，也别担心暂时的迷茫无措，人生本就不是一路平坦。每一次摔倒后留下的伤痕，都是你勇敢前行的勋章；每一次咬牙不放弃的坚持，都会积攒成向前的力量。那些在黑夜里独自硬撑、默默熬过的艰难时刻，终会变成一束束光，照亮你奔赴梦想的道路；那些拼尽全力、认真努力的时光，也一定会让你活成自己最耀眼、最出色的模样。</p><p>纵有疾风起，人生不言弃。以热血敬岁月，以拼搏赴前程，以初心守热爱，以无畏迎挑战，你只管全力以赴，时光定不会辜负每一份坚持。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="24">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>别因一时低谷就否定自己，别因暂时迷茫就停下脚步。人生从没有白走的路，每一步坚持都算数，每一次跌倒都是为了更好地站起。</p><p>不必害怕前路漫长，不必畏惧挑战重重，真正的光芒，需要一点点积累；真正的成长，总要历经风雨打磨。那些你默默付出的努力，那些咬牙扛下的艰辛，终会在未来化作惊喜，照亮你前行的方向。</p><p>哪怕现在平凡普通，哪怕暂时无人喝彩，也要保持热爱，奔赴山海。认准方向就全力以赴，心怀希望就永不言弃，你远比想象中更强大。</p><p class="philosophy-final"><span class="phil-line">眼里有光，心中有梦；</span><span class="phil-line">步履不停，未来可期！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="25">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>宝剑锋从磨砺出，梅花香自苦寒来。</p><p>人生难免有坎坷，前行总会遇风霜。不必抱怨当下的辛苦，不必焦虑眼前的困境，每一次咬牙坚持，都是在为自己积蓄力量；每一回迎难而上，都是在为未来铺路。</p><p>不经历风雨，怎能见彩虹；不熬过寒冬，怎知梅花芬芳。那些独自扛下的压力，那些默默付出的汗水，终将化作底气与荣光，让你在关键时刻绽放光芒。</p><p>愿我们都能在磨砺中坚强，在困境中成长，以坚韧为剑，以执着为锋，不惧艰难，不畏路遥，用今日的拼搏，换取明日的繁花似锦。</p><p class="philosophy-final"><span class="phil-line">心有坚韧，何惧风霜；厚积薄发，终究锋芒！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="26">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>长风破浪会有时，直挂云帆济沧海。</p><p>有人说，人生是一场漫长的航行，而我认为，人生是一场自我的重塑。是破晓前那一段最难熬的黑暗，是绝境中那一股死磕到底的韧劲；是无人识时的厚积薄发，是万众瞩目中的脚踏实地。</p><p>梦想！不是一时头脑发热的幻想，而是千锤百炼后的信仰；是明知路途遥远，依然愿意步履不停的执着；是战胜了无数个想要放弃的自己，依然选择咬牙坚持的勇气。大胆去拼、去闯、去绽放。毕竟，能在最好的年纪，为自己想要的生活全力以赴，本身就是此生最盛大的勋章。</p><p class="philosophy-final"><span class="phil-line">愿你我，不负韶华，不负热爱，活成自己最喜欢的模样！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="27">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>少年负壮气，奋烈自有时。我们总觉得前路遥远，却忘了每一次起步，都在靠近心中的山海。</p><p>不必怕起点平凡，也不必惧前路崎岖，那些你默默扎根的日子，那些你咬牙坚持的瞬间，都是命运悄悄为你铺垫的伏笔。</p><p>鲜衣怒马少年时，不负韶华行且知。青春最动人的从不是一帆风顺，而是跌倒后依然坚定的眼神，是迷茫中依旧选择前行的勇气。你要相信，天生我材必有用，你的才华、你的坚持、你的赤诚，终会被看见，终会发光。哪怕此刻步履蹒跚，只要方向明确，终能抵达远方；哪怕暂时无人喝彩，只要心怀热爱，终能活成自己的光。</p><p class="philosophy-final"><span class="phil-line">大鹏一日同风起，扶摇直上九万里。愿你以梦为马，不负少年志，终成心中所想！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="28">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人间总有温柔在，岁月总有美好来。不必慌，不必急，慢慢来，一切都刚刚好。</p><p>生活不会一直顺顺利利，有时候会遇到不顺心的事，有时候会觉得很累、很委屈，好像怎么努力都看不到希望。心情也会跟着低落，像被乌云遮住了太阳，闷闷的，提不起劲。但要相信，阴天不会一直持续，风总会来吹散乌云，阳光也总会照亮那些被忽略的角落。</p><p>那些你藏在心底说不出口的难过，那些没人理解的疲惫和心酸，那些深夜里偷偷掉的眼泪，都会在温柔的时光里慢慢被抚平、慢慢消散。</p><p class="philosophy-ending">不用逼自己立刻坚强，也不用强迫自己马上开心。累了就歇一歇，难过了就缓一缓，人生本就是一边走一边治愈，一边失去一边拥有。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="29">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>不必焦虑时光，不必慌张赶路，每个人都有自己的节奏，每朵花也有自己的花期。你不用和别人比进度，不用追赶别人的脚步，按自己的步调，慢慢走、稳稳行，就很好。</p><p>生活偶尔会有乌云，会有风雨，会有不被理解的时刻，但请记得，阴天总会过去，黑夜终会天亮，所有的难过与委屈，都会被温柔化解。你不必事事完美，不必样样逞强，允许自己偶尔疲惫，允许自己慢慢成长。</p><p>你已经努力了，也足够优秀。好好爱自己，好好生活，认真对待每一个平凡的日子，时光自会给你最好的答案。</p><p class="philosophy-final"><span class="phil-line">温柔且坚定，万事皆顺遂；</span><span class="phil-line">心有温柔意，步步皆花开。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="30">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>山海皆可渡，岁月自安然，世事浮沉皆过客，悲欢离合皆寻常。</p><p>曾经放不下的执念、耿耿于怀的往事，如今回头再看，都像风吹云散一般，渐渐淡成了云烟。直到真正放下、学会释怀，才明白心里轻松自在，才是真正的快乐。</p><p>人生本就像一场短暂的梦，不必太过较真，也不必苦苦执着。得到也好，失去也罢，顺其自然就好；有人相聚，有人离开，随心而行就好。</p><p>走过千山万水，历经世事沧桑，愿你依旧保持初心，不被岁月沾染尘埃。把世间纷扰都看淡，心放宽了，自然能收获一份安稳与宁静。</p><p class="philosophy-final"><span class="phil-line">回首向来萧瑟处，归去，也无风雨也无晴，</span><span class="phil-line">抬眼尽是山河秀，前行，一路繁花一路歌。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="31">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>别再等明天，别再等有空，别再等一切准备好。你以为的来日方长，其实都是悄悄溜走的时光。你现在偷的每一个懒，都是在给未来挖坑；你现在流的每一滴汗，都在铺你往后的路。生活从不会偏袒谁，它只奖励那些咬牙坚持，默默发力的人。你可以平凡，但不能甘于平庸；你可以跌倒，但必须爬起来继续往前冲。</p><p>别怕起点低，别怕起步晚，真正可怕的是你连开始都不敢。从今天起，收起矫情，放下犹豫，把每一次想放弃的念头，都变成再坚持一下的勇气。</p><p class="philosophy-final"><span class="phil-line">不必光芒万丈，但始终温暖有光；</span><span class="phil-line">不求一鸣惊人，但一定要步步向上。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="32">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生没有白走的路，每一步都算数。不必因为一时的不顺就否定全部，也不必因为暂时的迷茫就停下脚步。</p><p>风有风的方向，花有花的花期，你也有属于自己的节奏。累了就歇歇，困了就缓缓，允许自己不完美，允许一切慢慢来。</p><p>那些默默努力的时光，那些咬牙坚持的瞬间，都在悄悄积蓄力量，为你铺垫更好的未来。</p><p>愿你在平凡的日子里，守住内心的温柔与坚定，不慌不忙，向阳而行，眼里有光，心中有爱。相信所有美好，都会如期而至，所有期待，终将开花结果。</p><p class="philosophy-final"><span class="phil-line">心有暖阳，何惧风霜；步履不停，终有光芒。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="33">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>生于尘埃，不是宿命，向阳而生，才是归途。一时困顿，不是绝境，沉心蓄力，终会突围。身处泥泞，更要仰望星光，身陷低谷，仍要奔赴山海。有人年少成名，有人大器晚成，有人默默耕耘，终会发光。</p><p>他日若遂凌云志，敢笑苍天不丈夫。我们生而有光，不该黯淡前行，前路纵有荆棘，也要踏浪而行。每一次咬牙扛住，都在为未来筑基，每一次跌倒站起，都在让自己发光。心有山海，眼有星辰，以梦为舟，不负此生。</p><p class="philosophy-final"><span class="phil-line">莫欺少年穷，终有一日龙得水，定叫山河换新装。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="34">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生有三千，见天地，见众生，见自己。见天地，知敬畏，所以谦卑；见众生，懂怜悯，所以宽容；见自己，明归途，所以豁达。</p><p>而人生有三把钥匙：接受，改变，放下。接受不了就改变，改变不了就放下。生活皆是成长，成长便是人生。</p><p>什么样的人才算是见过世面的呢？能体谅囊中羞涩的窘迫，能理解穷人乍富的傲慢，能容忍井底之蛙的短浅，也能宽容吹嘘者的外强中干，更能理解这一切的无知，偏见，虚荣，傲慢和卑微。</p><p>不厌羨富人，不嘲笑穷人，不昧不欺，不卑不亢。因为人生走到哪一步台阶，阶上有人俯视你，阶下有人仰望你。于是低头自得，抬头自卑，可唯有平视，方见自己。</p><p class="philosophy-final"><span class="phil-line">愿我们不仰望，也不俯视，静静走在自己的路上，用一颗平和的心，走过人生的山高水长。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="35">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>花有重开日，人无再少年。</p><p>当我们看不清脚下的路时，就请比别人坚持得更久一些，我们每一个普通的改变都会使我们变得不普通。</p><p>我许东风知我意，吹尽心中意难平。少年虽有英雄梦，奈何青春不回头。莫忘少年凌云志，曾许人间第一流。</p><p>听闻少年二字，应与平庸相斥。</p><p class="philosophy-ending">倘若穷途末路，那便势如破竹。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="36">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>纵有疾风起，人生不言弃，行至水穷处，坐看云起时。</p><p>我们或许会在迷雾中徘徊，在低谷里沉潜，但每一次跌倒，都是为了更有力地站起；每一滴汗水，都在浇灌未来的花期。不必怕前路漫漫，不必惧风雨交加，那些打不倒我们的，终会让我们更加强大。且将新火试新茶，诗酒趁年华。别让犹豫消磨了锐气，别让怯懦困住了脚步，你要相信，那些看似不起眼的日复一日，终会在某天让你看到坚持的意义。哪怕此刻只是微光，也终会汇成星河，照亮属于你的远方。</p><p class="philosophy-final"><span class="phil-line">待到秋来九月八，我花开后百花杀。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="37">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>（图像读取失败，参考相同主题文章）</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="38">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>千万不要因为看见别人发光，就觉得自己暗淡，他强任他强，清风拂山岗，生活中，人和人的节奏是不一样的，有人三分钟泡面，有人三小时煲汤，你选择了你要的生活方式，就坚定走下去，别胡思乱想。</p><p>每个人的花期是不一样的，所以不必焦虑，别碰到一点压力就把自己搞得不堪重负的样子，成功之前，你这辈子该走的弯路该吃的苦，该撞的南墙，该掉的陷阱，一个都少不了。</p><p>放下纠结，考差了再努力，工作丢了再找，钱没了再挣，朋友没了可以再交，爱情丢了可以再遇，人生本来就一无所有，有什么事不能从头再来呢，不要东张西望，不要受人影响，大胆的往前走，你的光芒终将会被看到。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="39">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>一时失意，莫失本心，身处低谷，莫忘抬头。三餐不济，不坠青云之志，衣衫褴褛，不改傲骨之风。哪怕无人理解，也要坚持自我，就算前路漫漫，也要步履不停。</p><p>卧龙终有腾飞日，虎落平阳亦为王。</p><p>我们生而不凡，不该甘于平庸，征途虽远，行则将至。每一次披星戴月，都在为未来蓄力，每一次咬牙坚持，都在书写传奇。</p><p class="philosophy-ending">今日卧薪尝胆，明日一鸣惊人，待我东山再起，定要逆转乾坤。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="40">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>衣衫褴褛，也有王者之相，三餐不济，也非池中之物，身无分文，岂能断定日后无江山之望。无名小卒，焉知明日不会名震四海。</p><p>有人天命所归，有人时机未到。他日卧龙终得雨，今朝放鹤且冲天。</p><p>时不到，不要强生，事不变，不可强成，马有千里之程，无人不能自往，人有冲天之志，非运不能自通。</p><p>纵有千古，横有八荒，前途似海，来日方长。</p><p class="philosophy-ending">十年运道龙井困，一朝得势入青云。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="41">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我许东风知我意，吹尽心中意难平。世事如潮，人心如舟，偶有浪涌拍岸，亦有雾锁江汀（tīng）。不必困于过往，不必忧于未行，且将心事付与风，且把愁绪寄与云。檐下听雨，听的是心音；案前煮茶，煮的是清宁。</p><p>纵有千般意难平，亦有东风知我心。不必与他人争短长，只需与自己守清欢。那些深夜辗（zhǎn）转（zhuǎn）的思绪，终会被晨光温柔抚平；那些无人问津的孤独，终会被岁月轻轻相拥。</p><p class="philosophy-final"><span class="phil-line">且将新火试新茶，诗酒趁年华。</span><span class="phil-line">我许东风知我意，吹尽心中意难平。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="42">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>身居陋室，不妨心怀天下，囊中羞涩，不碍气吞山河。脚下泥泞，未必走不出坦途，眼前荆棘，谁说斩不断前程。有人生于殿堂，有人起于草莽，起点不同，终点未定。你以为的绝境，不过是命运在逼你换一条路走。</p><p>长风破浪会有时，直挂云帆济沧海。</p><p>每一个在深夜咬牙坚持的人，都值得被黎明温柔以待。你所受的苦，吃过的亏，扛下的累，都会在恰当的时候，变成命运给你的馈赠。耐得住寂寞，才守得住繁华；扛得住磨难，才接得住荣光。</p><p>莫道浮云终蔽日，严冬过尽绽春蕾。</p><p class="philosophy-final"><span class="phil-line">不经一番寒彻骨，怎得梅花扑鼻香。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="43">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生海海，山山而川，不过尔尔。我们都是时间的旅人，在这趟单程列车上，遇见谁，错过谁，都是命中注定的风景。不必为离别伤感，不必为相遇狂喜，所有的遇见都是久别重逢，所有的离别都是为了更好的相遇。</p><p>你要学会与自己和解，与世界和解。接纳不完美的自己，接纳不完美的他人，接纳不完美的世界。当你放下执念，放下偏见，放下仇恨，你会发现，原来生活可以如此美好。</p><p class="philosophy-final"><span class="phil-line">心若向阳，无畏悲伤；心若向暖，无惧严寒。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="44">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>“初见少年拉满弓，不惧岁月不惧风”。</p><p>大丈夫当立于群峰之巅，看云海翻涌，听长风穿林，所有的困顿与迷茫都随风散去，眼前是奔涌的江海，不是连绵的群山，是天地间无尽的风光，人生亦当如此，不困于眼前的苟且，不惑于一时的得失，心怀山海，眼有星辰。</p><p>人生不是一场冲刺，而是一场漫长的修行。是在平淡的日子里积攒力量，在起伏的境遇中保持从容；是学会与生活相拥，所以别怕过往，别怕前路，每一段经历都珍贵，每一次成长都值得。</p><p class="philosophy-ending">此行山高路远去找自己吧，顺便去看看世界。将向往的地方都变成去过的路！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="45">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>长风破浪会有时，直挂云帆济沧海。</p><p>有人说，人生是一场漫长的航行，而我认为，人生是一场自我的重塑。是破晓前那一段最难熬的黑暗，是绝境中那一股死磕到底的韧劲；是无人识时的厚积薄发，是万众瞩目中的脚踏实地。</p><p>梦想！不是一时头脑发热的幻想，而是千锤百炼后的信仰；是明知路途遥远，依然愿意步履不停的执着；是战胜了无数个想要放弃的自己，依然选择咬牙坚持的勇气。大胆去拼、去闯、去绽放。毕竟，能在最好的年纪，为自己想要的生活全力以赴，本身就是此生最盛大的勋章。</p><p class="philosophy-final"><span class="phil-line">愿你我，不负韶华，不负热爱，活成自己最喜欢的模样！</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="46">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>山不自语自高，水不言自流，人不语自厚，心不语自净。</p><p>做人，藏一份低调，守一份谦和，不炫耀锋芒，不张扬傲气。才华无需外露，自有岁月见证；品行无需标榜，自有众人相知。</p><p>静水流深，沧笙踏歌，于沉默中积蓄力量，于内敛中沉淀自我。</p><p>人生最难得的，不是万众瞩目时的风光，而是无人问津时的坚守；不是顺风顺水时的顺遂，而是低谷困境时的从容。不卑不亢，不慌不忙，稳步前行，自有芬芳。</p><p class="philosophy-final"><span class="phil-line">低调做人，高调做事，厚积薄发，终有所成。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="47">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我终于明白，朝花夕拾是什么意思。当你30岁的时候，去买18岁的东西，去20岁想去的地方，已经毫无意义。世界上没有那么多的来日方长，只有世事无常。欲买桂花同载酒，终不似少年游。</p><p>我们总说，等以后，等有钱了，等有时间了，等准备好，可生命最残酷的规则恰恰是：有些窗口只开放一次，你错过的不是一件商品，一次旅行，而是那个时空里独一无二的自己。</p><p>青春的本质不是年龄，而是一种全息的生命感知，那种看到晚霞，就想落泪；听到某首歌，就以为能永远；握住一只手，就敢对抗全世界的敏感。后来我们拥有了更多，却失去了这种全息感知的能力，但你知道吗？这个看似悲伤的发现里，藏着温柔的启示，当我们为“终不似少年游”流泪时，恰恰证明我们心里，还住着那个少年。</p><p>消失不是彻底的消亡，而是化作你灵魂的坐标，那个追不到的人，让你懂得了边界；那份搞砸的工作，塑造了你的任性；那些深夜的眼泪，灌溉了你现在的通透。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="48">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>深情不及久伴，厚爱无需多言，选择只是开始，坚持没有终点，愿未来的我们都能得到一份满意的答卷，愿成功的星火逐渐燎原，照亮你我的爱情事业的前程。</p><p>何时葡萄先熟透，你需静候再静候。何时功成与名就，你要静心再静心，辞家千里又千里，务必争气再争气。他乡纵有千般景，怎及高堂盼我身。待到功成携酒返，笑看岁月酿艰辛。</p><p>星光不问赶路人，时光不负有心人，愿你我归来仍是少年。加油，未来的我们一定可以成为自己想要成为的人。</p><p class="philosophy-ending">苦厄难夺凌云志，不死终有出头日。他朝若有翻身时，生吃黄连也叫甜。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="49">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>山海自有归期，风雨自有相逢，意难平终将和解，万事终将如意。没有不可治愈的伤痛，没有不能结束的沉沦，所有失去的，会以另外一种方式归来，那些我们在意的事情，纠结的地方，放不下的人，可能多年以后，回头再看，根本不算什么。</p><p>曾经一度不理解老人晒太阳，一坐就是半天，长大了才明白，目之所及皆是过往，心之所想皆是回忆，眼之所看皆是遗憾。</p><p class="philosophy-ending">回头看，轻舟已过万重山，向前看，前路漫漫亦灿灿，抬头看，满天星光甚浪漫，低头看，满路荆棘已过半。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="50">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>前路漫漫，亦有星光为伴；风雨兼程，终会遇见晴天。眼下困顿，不过是黎明前的雾霭；此刻平凡，恰是为崛起积蓄力量。莫叹出身平凡，莫惧眼下艰难，你我皆是追光者，终会在自己的时区里绽放光芒。</p><p>且将新火试新茶，诗酒趁年华。</p><p>我们生而普通，但不能丢了锋芒。荆棘丛生，亦可踏成坦途；迷雾重重，终能拨云见日。每个在黑夜里咬牙坚持的你，终将迎来属于自己的破晓时分。心有丘壑，目存山河，少年自有玫瑰与星光。</p><p class="philosophy-ending">最后，且挨过三冬四夏，雪尽后再看梅花。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="51">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>出身微寒，未必不能登堂入室；起步卑微，亦可直上九霄。手无寸铁，怎知日后不能执掌乾坤？一时困顿，岂能定论一生输赢。有人早慧，有人晚成，花开各有时，不必争朝夕。你看到的是别人的风光，看不到的是他们曾经的狼狈。</p><p>他日卧龙终得雨，今朝放鹤且冲天。</p><p>真正的强者，不是从不跌倒，而是每次跌倒后都能站得更稳，站得更高。路虽远，行则将至；事虽难，做则可成。别怕起点低，只怕志气短；别怕路遥远，只怕脚不前。</p><p>你熬过的夜，流过的汗，受过的冷眼，终有一天会变成你身上的光。</p><p class="philosophy-ending">时来天地皆同力，运去英雄不自由。但若你不认命，命也奈何不了你。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="52">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>山海自有归期，风雨自有相逢，意难平终将和解，万事终将如意。没有不可治愈的伤痛，没有不能结束的沉沦，所有失去的，会以另外一种方式归来，那些我们在意的事情，纠结的地方，放不下的人，可能多年以后，回头再看，根本不算什么。</p><p>曾经一度不理解老人晒太阳，一坐就是半天，长大了才明白，目之所及皆是过往，心之所想皆是回忆，眼之所看皆是遗憾。</p><p class="philosophy-ending">回头看，轻舟已过万重山，向前看，前路漫漫亦灿灿，抬头看，满天星光甚浪漫，低头看，满路荆棘已过半。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="53">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>花有重开日，人无再少年。</p><p>当我们看不清脚下的路时，就请比别人坚持得更久一些，我们每一个普通的改变都会使我们变得不普通。</p><p>我许东风知我意，吹尽心中意难平。少年虽有英雄梦，奈何青春不回头。莫忘少年凌云志，曾许人间第一流。</p><p>听闻少年二字，应与平庸相识。</p><p class="philosophy-ending">倘若穷途末路，那便势如破竹。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="54">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>衣衫褴褛，也有王者之相，三餐不济，也非池中之物，身无分文，岂能断定日后无江之望，今日无名小卒，焉知明日不会名震四海，有人天命加身，有人时机未至。</p><p>他日卧龙终得雨，今朝放鹤且冲天。</p><p>我们生而平凡，但不能甘于平庸，征途虽险，山海可平，每个曾披星戴月的你，终将披荆斩棘，纵有千古，横有八荒，前途似海，来日方长。</p><p class="philosophy-final"><span class="phil-line">十年运道龙井困，一朝得势入青云。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="55">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我终于明白，朝花夕拾是什么意思。当你30岁的时候，去买18岁的东西，去20岁想去的地方，已经毫无意义。世界上没有那么多的来日方长，只有世事无常。欲买桂花同载酒，终不似少年游。</p><p>我们总说，等以后，等有钱了，等有时间了，等准备好，可生命最残酷的规则恰恰是：有些窗口只开放一次，你错过的不是一件商品，一次旅行，而是那个时空里独一无二的自己。</p><p>青春的本质不是年龄，而是一种全息的生命感知，那种看到晚霞，就想落泪；听到某首歌，就以为能永远；握住一只手，就敢对抗全世界的敏感。后来我们拥有了更多，却失去了这种全息感知的能力，但你知道吗？这个看似悲伤的发现里，藏着温柔的启示，当我们为“终不似少年游”流泪时，恰恰证明我们心里，还住着那个少年。</p><p>消失不是彻底的消亡，而是化作你灵魂的坐标，那个追不到的人，让你懂得了边界；那份搞砸的工作，塑造了你的任性；那些深夜的眼泪，灌溉了你现在的通透。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="56">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>其实，难走的从来都不是路，而是你心里的那一关。</p><p>关关难过关关过，夜夜难熬夜夜熬，<br>步步难行步步行，事事难成事事成。<br>人生海海，山山而川，不过尔尔。<br>昨日之深渊，今日之浅滩；<br>路虽远，行则将至，事虽难，做则可成！<br>回头看，轻舟已过万重山，<br>向前看，前路漫漫亦灿灿，抬头看，满天星光甚浪漫，低头看，满路荆棘已过半。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="57">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>深情不及久伴，厚爱无需多言，选择只是开始，坚持没有终点，愿未来的我们都能得到一份满意的答卷，愿成功的星火逐渐燎原，照亮你我的爱情事业的前程。</p><p>何时葡萄先熟透，你需静候再静候。何时功成与名就，你要静心再静心，辞家千里又千里，务必争气再争气。他乡纵有千般景，怎及高堂盼我身。待到功成携酒返，笑看岁月酿艰辛。</p><p>星光不问赶路人，时光不负有心人，愿你我归来仍是少年。加油，未来的我们一定可以成为自己想要成为的人。</p><p class="philosophy-ending">苦厄难夺凌云志，不死终有出头日。他朝若有翻身时，生吃黄连也叫甜。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="58">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>何时葡萄先熟透，你需静候再静候。何时功成与名就，你要静心再静心，别因眼前的黑暗，放弃远方的曙光；别因他人的否定，丢掉心中的锋芒。有人少年得志，有人大器晚成。</p><p>苦厄难夺凌云志，不死终有出头日！</p><p>别怕路难，别怕天黑，所有的坚持，终会迎来破晓的曙光，你付出的努力，流下的汗水，熬过的孤独，都会在时光里开花结果。</p><p class="philosophy-ending">乾坤未定，你我皆是黑马；风云再起，我辈自当锋芒！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="59">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>我们希望在接下来的日子里各位记得，万般的努力只为出人头地，低头弯腰只为爬的更高，简单的欲望唾手可得，高级的欲望需要克制才可以达得到。</p><p>希望各位记住：<br>无人扶我青云志，我自踏雪至山巅。<br>若是命中无此运，孤身亦可登昆仑。<br>苦厄难夺凌云志，不死终有出头日。<br>他朝若有翻身时，生吃黄连也叫甜。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="60">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>穷巷陋室，也怀霸王之志，身无分文，也非蝼蚁之命。</p><p>时运不济，怎敢轻言此生无转机，今朝虎落平阳，焉知他日不龙腾四海。</p><p>有人春风得意，有人卧薪尝胆。<br>昔日蛟困于滩，今朝翻江覆海川。<br>我们生而渺小，却要气吞山河，道阻且艰，毅则必达。</p><p class="philosophy-ending">每个曾负重前行的你，终将轻装上路。<br>纵有千难，横有万险，志存高远，终抵彼岸。<br>十载寒窗磨一剑，一朝试锋惊人间。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="61">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>步步难行步步行，事事难成事事成。<br>我们不会白忙，因为我们要么收获，要么成长——顺境是礼物，逆境是修行。<br>所有经历，都是时光的馈赠；所有过往，皆为序章。</p><p>我与遗憾归于尘，来年依旧向光而生。<br>所以每一次跌倒都不算失败，任何事情，不是得到，就是悟到。<br>我们要做的，是接纳当下的所有情绪，相信慢慢来的力量，<br>每一步都算数，每一段路都有风景。</p><p class="philosophy-final"><span class="phil-line">且停且忘且随风，且行且看且从容。</span></p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="62">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>非常喜欢的一段话：既然是生活，就免不了酸甜苦辣，既然是人生，就免不了人情冷暖。</p><p>生活，就这样，别人只看结果，自己独撑过程，面对生活，我们除了坚持就是继续，别无选择。</p><p class="philosophy-ending">只要心中有光，何惧人生荒凉，无论经历怎样的时刻，记住这三点：不怀疑自己的决定，不抱怨遇见的苦难，不畏惧前方的黑暗。</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide" data-index="63">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="slide-title">每日练嘴</div>
+  <div class="content"><p>人生最顶级的心态，就是落子无悔。人不可能每一步都正确，选错了就选错了，不要责备当初的自己；如果重来一次，以当时的阅历和心智，你依旧会做出同样的选择。</p><p>旧认知，选不出新答案。</p><p>我们永远不能站在现在的高度，去批判当初懵懂的自己。</p><p class="philosophy-ending">知不足而奋进，望远山而前行，你尽管努力，如果事与愿违，请相信，上天一定另有安排！</p></div>
+  <div class="seal">日<br>日<br>精<br>进</div>
+</div><div class="slide section-title" data-index="64">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <h1>五百佳句</h1>
+  <div class="section-decoration"></div>
+  <p>五百句背下来 &middot; 满腹经纶</p>
+  <p>诗词积累 &middot; 出口成章</p>
+</div><div class="slide sentences-page" data-index="65">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 1 — 5 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">1</div><div class="sentence-text">本是青灯不归客，却因浊酒恋红尘。</div><div class="sentence-expr">舍不得你，却留不住你。</div></div><div class="sentence-row"><div class="sentence-num">2</div><div class="sentence-text">心酸纵有千百种，沉默不语最难过。</div><div class="sentence-expr">心酸至极。</div></div><div class="sentence-row"><div class="sentence-num">3</div><div class="sentence-text">桃花与柳不同春，自此天涯陌路人。</div><div class="sentence-expr">分道扬镳。</div></div><div class="sentence-row"><div class="sentence-num">4</div><div class="sentence-text">后来烟雨皆散尽，无人撑伞一人行。</div><div class="sentence-expr">孤独前行。</div></div><div class="sentence-row"><div class="sentence-num">5</div><div class="sentence-text">茶若醉人何须酒，唯有碎银解千愁。</div><div class="sentence-expr">何以解忧，唯有暴富。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="66">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 6 — 10 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">6</div><div class="sentence-text">自古人生最忌满，半贫半富半自安。</div><div class="sentence-expr">人生不必追求完美。</div></div><div class="sentence-row"><div class="sentence-num">7</div><div class="sentence-text">律回岁晚冰霜少，春到人间草木知。</div><div class="sentence-expr">好事将近。</div></div><div class="sentence-row"><div class="sentence-num">8</div><div class="sentence-text">且停且忘且随风，且行且看且从容。</div><div class="sentence-expr">随遇而安。</div></div><div class="sentence-row"><div class="sentence-num">9</div><div class="sentence-text">明知相思乱心神，奈何相思已入魂。</div><div class="sentence-expr">爱你无法自拔。</div></div><div class="sentence-row"><div class="sentence-num">10</div><div class="sentence-text">日落西山非我意，晓霞再好不及你。</div><div class="sentence-expr">唯你不可替代。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="67">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 11 — 15 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">11</div><div class="sentence-text">欲渡黄河冰塞川，将登太行雪满山。</div><div class="sentence-expr">人生多艰。</div></div><div class="sentence-row"><div class="sentence-num">12</div><div class="sentence-text">仰天大笑出门去，我辈岂是蓬蒿人。</div><div class="sentence-expr">豪情壮志。</div></div><div class="sentence-row"><div class="sentence-num">13</div><div class="sentence-text">云随风去不知所起，风吹千里不问归期。</div><div class="sentence-expr">默默钟情。</div></div><div class="sentence-row"><div class="sentence-num">14</div><div class="sentence-text">春风十里扬州路，卷上珠帘总不如你。</div><div class="sentence-expr">你无可比拟。</div></div><div class="sentence-row"><div class="sentence-num">15</div><div class="sentence-text">白发癫狂尘梦断，青丝冷落灯下勤。</div><div class="sentence-expr">珍惜年少时光。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="68">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 16 — 20 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">16</div><div class="sentence-text">最是凝眸无限意，似曾相逢在前生。</div><div class="sentence-expr">再续前缘。</div></div><div class="sentence-row"><div class="sentence-num">17</div><div class="sentence-text">观星觅云难悲喜，闻风听雨不知你。</div><div class="sentence-expr">有你足矣。</div></div><div class="sentence-row"><div class="sentence-num">18</div><div class="sentence-text">一双玉臂千人枕，半点朱唇万客尝。</div><div class="sentence-expr">风尘沧桑。</div></div><div class="sentence-row"><div class="sentence-num">19</div><div class="sentence-text">无人与我立黄昏，无人问我粥可温。</div><div class="sentence-expr">孤寂无人问。</div></div><div class="sentence-row"><div class="sentence-num">20</div><div class="sentence-text">最是人间留不住，朱颜辞镜花辞树。</div><div class="sentence-expr">岁月无情。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="69">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 21 — 25 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">21</div><div class="sentence-text">世情薄，人情恶，雨送黄昏花易落。</div><div class="sentence-expr">世间凉薄。</div></div><div class="sentence-row"><div class="sentence-num">22</div><div class="sentence-text">一身清贫怎敢入繁华，两袖清风怎敢误佳人。</div><div class="sentence-expr">清贫难许承诺。</div></div><div class="sentence-row"><div class="sentence-num">23</div><div class="sentence-text">山鸟与鱼不同路，从此山水不相逢。</div><div class="sentence-expr">彻底别过。</div></div><div class="sentence-row"><div class="sentence-num">24</div><div class="sentence-text">夜半浊酒慰寂寥，天明走马入红尘。</div><div class="sentence-expr">生活仍需继续。</div></div><div class="sentence-row"><div class="sentence-num">25</div><div class="sentence-text">风雪压我两三年，我笑风轻雪如棉。</div><div class="sentence-expr">笑对困境。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="70">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 26 — 30 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">26</div><div class="sentence-text">行至水穷处，坐看云起时。</div><div class="sentence-expr">顺其自然。</div></div><div class="sentence-row"><div class="sentence-num">27</div><div class="sentence-text">何时得逐田园乐，眠到人间饭熟时。</div><div class="sentence-expr">向往闲适。</div></div><div class="sentence-row"><div class="sentence-num">28</div><div class="sentence-text">总有人间一两风，填我十万八千梦。</div><div class="sentence-expr">希望将至。</div></div><div class="sentence-row"><div class="sentence-num">29</div><div class="sentence-text">此身天地一虚舟，何处江山不自由。</div><div class="sentence-expr">重振旗鼓。</div></div><div class="sentence-row"><div class="sentence-num">30</div><div class="sentence-text">他日卧龙终得雨，今朝放鹤且冲天。</div><div class="sentence-expr">苦尽甘来。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="71">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 31 — 35 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">31</div><div class="sentence-text">即今江海一归客，他日云霄万里人。</div><div class="sentence-expr">未来可期。</div></div><div class="sentence-row"><div class="sentence-num">32</div><div class="sentence-text">陌上人如玉，公子世无双。</div><div class="sentence-expr">风华绝代。</div></div><div class="sentence-row"><div class="sentence-num">33</div><div class="sentence-text">得成比目何辞死，愿作鸳鸯不羡仙。</div><div class="sentence-expr">此生唯你。</div></div><div class="sentence-row"><div class="sentence-num">34</div><div class="sentence-text">曲未终，人已散，酒未醉，心已碎。</div><div class="sentence-expr">无疾而终。</div></div><div class="sentence-row"><div class="sentence-num">35</div><div class="sentence-text">从此音尘各悄然，春山如黛草如烟。</div><div class="sentence-expr">各自安好。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="72">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 36 — 40 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">36</div><div class="sentence-text">人生海海，山山而川，不过尔尔。</div><div class="sentence-expr">淡然处之。</div></div><div class="sentence-row"><div class="sentence-num">37</div><div class="sentence-text">去年一滴相思泪，至今流不到腮边。</div><div class="sentence-expr">戏谑脸长。</div></div><div class="sentence-row"><div class="sentence-num">38</div><div class="sentence-text">我是檐上三寸雪，你是人间四月天。</div><div class="sentence-expr">自愧不如。</div></div><div class="sentence-row"><div class="sentence-num">39</div><div class="sentence-text">幸得识卿桃花面，从此阡陌多暖春。</div><div class="sentence-expr">幸运如己。</div></div><div class="sentence-row"><div class="sentence-num">40</div><div class="sentence-text">错把陈醋当成墨，写尽半生纸上酸。</div><div class="sentence-expr">半生辛酸。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="73">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 41 — 45 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">41</div><div class="sentence-text">浮生若梦，为欢几何？</div><div class="sentence-expr">及时行乐。</div></div><div class="sentence-row"><div class="sentence-num">42</div><div class="sentence-text">我见青山多妩媚，料青山见我应如是。</div><div class="sentence-expr">惺惺相惜。</div></div><div class="sentence-row"><div class="sentence-num">43</div><div class="sentence-text">醉后不知天在水，满船清梦压星河。</div><div class="sentence-expr">浪漫至死。</div></div><div class="sentence-row"><div class="sentence-num">44</div><div class="sentence-text">若教眼底无离恨，不信人间有白头。</div><div class="sentence-expr">离愁难解。</div></div><div class="sentence-row"><div class="sentence-num">45</div><div class="sentence-text">曾经沧海难为水，除却巫山不是云。</div><div class="sentence-expr">非你不可。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="74">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 46 — 50 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">46</div><div class="sentence-text">玲珑骰子安红豆，入骨相思知不知。</div><div class="sentence-expr">刻骨铭心。</div></div><div class="sentence-row"><div class="sentence-num">47</div><div class="sentence-text">世间安得双全法，不负如来不负卿。</div><div class="sentence-expr">两难抉择。</div></div><div class="sentence-row"><div class="sentence-num">48</div><div class="sentence-text">君埋泉下泥销骨，我寄人间雪满头。</div><div class="sentence-expr">生死相隔。</div></div><div class="sentence-row"><div class="sentence-num">49</div><div class="sentence-text">落花人独立，微雨燕双飞。</div><div class="sentence-expr">形单影只。</div></div><div class="sentence-row"><div class="sentence-num">50</div><div class="sentence-text">平生不会相思，才会相思，便害相思。</div><div class="sentence-expr">情根深种。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="75">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 51 — 55 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">51</div><div class="sentence-text">疏影横斜水清浅，暗香浮动月黄昏。</div><div class="sentence-expr">清幽雅境。</div></div><div class="sentence-row"><div class="sentence-num">52</div><div class="sentence-text">试问卷帘人，却道海棠依旧。知否？知否？应是绿肥红瘦。</div><div class="sentence-expr">愁绪万千。</div></div><div class="sentence-row"><div class="sentence-num">53</div><div class="sentence-text">似此星辰非昨夜，为谁风露立中宵。</div><div class="sentence-expr">痴心守候。</div></div><div class="sentence-row"><div class="sentence-num">54</div><div class="sentence-text">十年生死两茫茫，不思量，自难忘。</div><div class="sentence-expr">永世不忘。</div></div><div class="sentence-row"><div class="sentence-num">55</div><div class="sentence-text">此情可待成追忆，只是当时已惘然。</div><div class="sentence-expr">追悔莫及。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="76">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 56 — 60 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">56</div><div class="sentence-text">欲买桂花同载酒，终不似，少年游。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">57</div><div class="sentence-text">桃李春风一杯酒，江湖夜雨十年灯。</div><div class="sentence-expr">聚散匆匆。</div></div><div class="sentence-row"><div class="sentence-num">58</div><div class="sentence-text">众里寻他千百度，蓦然回首，那人却在灯火阑珊处。</div><div class="sentence-expr">终得圆满。</div></div><div class="sentence-row"><div class="sentence-num">59</div><div class="sentence-text">昨夜西风凋碧树，独上高楼，望尽天涯路。</div><div class="sentence-expr">孤寂求索。</div></div><div class="sentence-row"><div class="sentence-num">60</div><div class="sentence-text">衣带渐宽终不悔，为伊消得人憔悴。</div><div class="sentence-expr">无悔付出。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="77">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 61 — 65 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">61</div><div class="sentence-text">满目山河空念远，落花风雨更伤春。</div><div class="sentence-expr">触景伤情。</div></div><div class="sentence-row"><div class="sentence-num">62</div><div class="sentence-text">直道相思了无益，未妨惆怅是清狂。</div><div class="sentence-expr">痴情难抑。</div></div><div class="sentence-row"><div class="sentence-num">63</div><div class="sentence-text">小楼一夜听春雨，深巷明朝卖杏花。</div><div class="sentence-expr">闲适悠然。</div></div><div class="sentence-row"><div class="sentence-num">64</div><div class="sentence-text">若似月轮终皎洁，不辞冰雪为卿热。</div><div class="sentence-expr">至死不渝。</div></div><div class="sentence-row"><div class="sentence-num">65</div><div class="sentence-text">相思本是无凭语，莫向花笺费泪行。</div><div class="sentence-expr">爱而不得。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="78">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 66 — 70 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">66</div><div class="sentence-text">人生若只如初见，何事秋风悲画扇。</div><div class="sentence-expr">初心难守。</div></div><div class="sentence-row"><div class="sentence-num">67</div><div class="sentence-text">黄沙百战穿金甲，不破楼兰终不还。</div><div class="sentence-expr">一往无前。</div></div><div class="sentence-row"><div class="sentence-num">68</div><div class="sentence-text">千淘万漉虽辛苦，吹尽狂沙始到金。</div><div class="sentence-expr">坚持到底。</div></div><div class="sentence-row"><div class="sentence-num">69</div><div class="sentence-text">宁可枝头抱香死，何曾吹落北风中。</div><div class="sentence-expr">气节不改。</div></div><div class="sentence-row"><div class="sentence-num">70</div><div class="sentence-text">但使龙城飞将在，不教胡马度阴山。</div><div class="sentence-expr">家国情怀。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="79">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 71 — 75 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">71</div><div class="sentence-text">纸上得来终觉浅，绝知此事要躬行。</div><div class="sentence-expr">实践出真知。</div></div><div class="sentence-row"><div class="sentence-num">72</div><div class="sentence-text">莫道桑榆晚，为霞尚满天。</div><div class="sentence-expr">老当益壮。</div></div><div class="sentence-row"><div class="sentence-num">73</div><div class="sentence-text">不经一番寒彻骨，怎得梅花扑鼻香。</div><div class="sentence-expr">磨砺成才。</div></div><div class="sentence-row"><div class="sentence-num">74</div><div class="sentence-text">海内存知己，天涯若比邻。</div><div class="sentence-expr">友情长存。</div></div><div class="sentence-row"><div class="sentence-num">75</div><div class="sentence-text">天生我材必有用，千金散尽还复来。</div><div class="sentence-expr">自信洒脱。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="80">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 76 — 80 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">76</div><div class="sentence-text">采菊东篱下，悠然见南山。</div><div class="sentence-expr">隐逸之乐。</div></div><div class="sentence-row"><div class="sentence-num">77</div><div class="sentence-text">大鹏一日同风起，扶摇直上九万里。</div><div class="sentence-expr">壮志凌云。</div></div><div class="sentence-row"><div class="sentence-num">78</div><div class="sentence-text">会当凌绝顶，一览众山小。</div><div class="sentence-expr">胸怀天下。</div></div><div class="sentence-row"><div class="sentence-num">79</div><div class="sentence-text">沉舟侧畔千帆过，病树前头万木春。</div><div class="sentence-expr">生生不息。</div></div><div class="sentence-row"><div class="sentence-num">80</div><div class="sentence-text">莫愁前路无知己，天下谁人不识君。</div><div class="sentence-expr">前程似锦。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="81">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 81 — 85 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">81</div><div class="sentence-text">长风破浪会有时，直挂云帆济沧海。</div><div class="sentence-expr">逆境突围。</div></div><div class="sentence-row"><div class="sentence-num">82</div><div class="sentence-text">苟利国家生死以，岂因祸福避趋之。</div><div class="sentence-expr">赤子之心。</div></div><div class="sentence-row"><div class="sentence-num">83</div><div class="sentence-text">落红不是无情物，化作春泥更护花。</div><div class="sentence-expr">无私奉献。</div></div><div class="sentence-row"><div class="sentence-num">84</div><div class="sentence-text">问君能有几多愁？恰似一江春水向东流。</div><div class="sentence-expr">愁绪绵长。</div></div><div class="sentence-row"><div class="sentence-num">85</div><div class="sentence-text">春蚕到死丝方尽，蜡炬成灰泪始干。</div><div class="sentence-expr">至死方休。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="82">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 86 — 90 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">86</div><div class="sentence-text">不是浮云遮望眼，自缘身在最高层。</div><div class="sentence-expr">高瞻远瞩。</div></div><div class="sentence-row"><div class="sentence-num">87</div><div class="sentence-text">江山代有才人出，各领风骚数百年。</div><div class="sentence-expr">人才辈出。</div></div><div class="sentence-row"><div class="sentence-num">88</div><div class="sentence-text">黑发不知勤学早，白首方悔读书迟。</div><div class="sentence-expr">惜时勤学。</div></div><div class="sentence-row"><div class="sentence-num">89</div><div class="sentence-text">男儿何不带吴钩，收取关山五十州。</div><div class="sentence-expr">报国壮志。</div></div><div class="sentence-row"><div class="sentence-num">90</div><div class="sentence-text">谁言寸草心，报得三春晖。</div><div class="sentence-expr">感恩父母。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="83">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 91 — 95 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">91</div><div class="sentence-text">醉卧沙场君莫笑，古来征战几人回。</div><div class="sentence-expr">视死如归。</div></div><div class="sentence-row"><div class="sentence-num">92</div><div class="sentence-text">洛阳亲友如相问，一片冰心在玉壶。</div><div class="sentence-expr">高洁自持。</div></div><div class="sentence-row"><div class="sentence-num">93</div><div class="sentence-text">近乡情更怯，不敢问来人。</div><div class="sentence-expr">归心忐忑。</div></div><div class="sentence-row"><div class="sentence-num">94</div><div class="sentence-text">同是天涯沦落人，相逢何必曾相识。</div><div class="sentence-expr">同病相怜。</div></div><div class="sentence-row"><div class="sentence-num">95</div><div class="sentence-text">抽刀断水水更流，举杯消愁愁更愁。</div><div class="sentence-expr">愁绪难解。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="84">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 96 — 100 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">96</div><div class="sentence-text">花自飘零水自流，一种相思，两处闲愁。</div><div class="sentence-expr">异地苦恋。</div></div><div class="sentence-row"><div class="sentence-num">97</div><div class="sentence-text">枝上柳绵吹又少，天涯何处无芳草。</div><div class="sentence-expr">豁达释然。</div></div><div class="sentence-row"><div class="sentence-num">98</div><div class="sentence-text">一蓑烟雨任平生，也无风雨也无晴。</div><div class="sentence-expr">超然物外。</div></div><div class="sentence-row"><div class="sentence-num">99</div><div class="sentence-text">世事一场大梦，人生几度秋凉。</div><div class="sentence-expr">浮生若梦。</div></div><div class="sentence-row"><div class="sentence-num">100</div><div class="sentence-text">回首向来萧瑟处，归去，也无风雨也无晴。</div><div class="sentence-expr">心境澄明。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="85">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 101 — 105 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">101</div><div class="sentence-text">醉后不知身是客，一晌贪欢。</div><div class="sentence-expr">忘却烦忧。</div></div><div class="sentence-row"><div class="sentence-num">102</div><div class="sentence-text">青山依旧在，几度夕阳红。</div><div class="sentence-expr">世事变迁。</div></div><div class="sentence-row"><div class="sentence-num">103</div><div class="sentence-text">若得山花插满头，莫问奴归处。</div><div class="sentence-expr">洒脱自由。</div></div><div class="sentence-row"><div class="sentence-num">104</div><div class="sentence-text">两情若是久长时，又岂在朝朝暮暮。</div><div class="sentence-expr">真爱无惧距离。</div></div><div class="sentence-row"><div class="sentence-num">105</div><div class="sentence-text">人生得意须尽欢，莫使金樽空对月。</div><div class="sentence-expr">活在当下。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="86">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 106 — 110 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">106</div><div class="sentence-text">相见时难别亦难，东风无力百花残。</div><div class="sentence-expr">离别苦楚。</div></div><div class="sentence-row"><div class="sentence-num">107</div><div class="sentence-text">春心莫共花争发，一寸相思一寸灰。</div><div class="sentence-expr">相思成怨。</div></div><div class="sentence-row"><div class="sentence-num">108</div><div class="sentence-text">少年不识愁滋味，爱上层楼。</div><div class="sentence-expr">年少轻狂。</div></div><div class="sentence-row"><div class="sentence-num">109</div><div class="sentence-text">而今识尽愁滋味，欲说还休。</div><div class="sentence-expr">沧桑难言。</div></div><div class="sentence-row"><div class="sentence-num">110</div><div class="sentence-text">我有一瓢酒，可以慰风尘。</div><div class="sentence-expr">自斟自愈。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="87">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 111 — 115 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">111</div><div class="sentence-text">世事短如春梦，人情薄似秋云。</div><div class="sentence-expr">世态炎凉。</div></div><div class="sentence-row"><div class="sentence-num">112</div><div class="sentence-text">明月楼高休独倚，酒入愁肠，化作相思泪。</div><div class="sentence-expr">孤夜难眠。</div></div><div class="sentence-row"><div class="sentence-num">113</div><div class="sentence-text">莫听穿林打叶声，何妨吟啸且徐行。</div><div class="sentence-expr">从容不迫。</div></div><div class="sentence-row"><div class="sentence-num">114</div><div class="sentence-text">愿我如星君如月，夜夜流光相皎洁。</div><div class="sentence-expr">长伴不离。</div></div><div class="sentence-row"><div class="sentence-num">115</div><div class="sentence-text">浮云一别后，流水十年间。</div><div class="sentence-expr">时光荏苒。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="88">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 116 — 120 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">116</div><div class="sentence-text">只愿君心似我心，定不负相思意。</div><div class="sentence-expr">双向奔赴。</div></div><div class="sentence-row"><div class="sentence-num">117</div><div class="sentence-text">生当作人杰，死亦为鬼雄。</div><div class="sentence-expr">傲骨铮铮。</div></div><div class="sentence-row"><div class="sentence-num">118</div><div class="sentence-text">夜月一帘幽梦，春风十里柔情。</div><div class="sentence-expr">缠绵情深。</div></div><div class="sentence-row"><div class="sentence-num">119</div><div class="sentence-text">无可奈何花落去，似曾相识燕归来。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">120</div><div class="sentence-text">蜡炬有心还惜别，替人垂泪到天明。</div><div class="sentence-expr">离别难舍。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="89">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 121 — 125 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">121</div><div class="sentence-text">多情自古伤离别，更那堪冷落清秋节。</div><div class="sentence-expr">秋思断肠。</div></div><div class="sentence-row"><div class="sentence-num">122</div><div class="sentence-text">一别两宽，各生欢喜。</div><div class="sentence-expr">体面分手。</div></div><div class="sentence-row"><div class="sentence-num">123</div><div class="sentence-text">细雨湿衣看不见，闲花落地听无声。</div><div class="sentence-expr">细腻情思。</div></div><div class="sentence-row"><div class="sentence-num">124</div><div class="sentence-text">竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。表达：旷达超脱。</div><div class="sentence-expr">旷达超脱。</div></div><div class="sentence-row"><div class="sentence-num">125</div><div class="sentence-text">醉里挑灯看剑，梦回吹角连营。</div><div class="sentence-expr">壮志未酬。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="90">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 126 — 130 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">126</div><div class="sentence-text">花有重开日，人无再少年。</div><div class="sentence-expr">惜时如金。</div></div><div class="sentence-row"><div class="sentence-num">127</div><div class="sentence-text">当时明月在，曾照彩云归。</div><div class="sentence-expr">往事如烟。</div></div><div class="sentence-row"><div class="sentence-num">128</div><div class="sentence-text">自古逢秋悲寂寥，我言秋日胜春朝。</div><div class="sentence-expr">逆流而上。</div></div><div class="sentence-row"><div class="sentence-num">129</div><div class="sentence-text">伤心桥下春波绿，曾是惊鸿照影来。</div><div class="sentence-expr">旧梦难寻。</div></div><div class="sentence-row"><div class="sentence-num">130</div><div class="sentence-text">还君明珠双泪垂，恨不相逢未嫁时。</div><div class="sentence-expr">缘浅情深。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="91">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 131 — 135 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">131</div><div class="sentence-text">凭君莫话封侯事，一将功成万骨枯。</div><div class="sentence-expr">——</div></div><div class="sentence-row"><div class="sentence-num">132</div><div class="sentence-text">劝君莫惜金缕衣，劝君惜取少年时。</div><div class="sentence-expr">青春无价。</div></div><div class="sentence-row"><div class="sentence-num">133</div><div class="sentence-text">春风又绿江南岸，明月何时照我还。</div><div class="sentence-expr">思乡情切。</div></div><div class="sentence-row"><div class="sentence-num">134</div><div class="sentence-text">身无彩凤双飞翼，心有灵犀一点通。</div><div class="sentence-expr">默契无间。</div></div><div class="sentence-row"><div class="sentence-num">135</div><div class="sentence-text">天若有情天亦老，人间正道是沧桑。</div><div class="sentence-expr">天道无情。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="92">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 136 — 140 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">136</div><div class="sentence-text">独在异乡为异客，每逢佳节倍思亲。</div><div class="sentence-expr">漂泊孤独。</div></div><div class="sentence-row"><div class="sentence-num">137</div><div class="sentence-text">千山鸟飞绝，万径人踪灭。</div><div class="sentence-expr">孤绝之境。</div></div><div class="sentence-row"><div class="sentence-num">138</div><div class="sentence-text">何当共剪西窗烛，却话巴山夜雨时。</div><div class="sentence-expr">期盼重逢。</div></div><div class="sentence-row"><div class="sentence-num">139</div><div class="sentence-text">出师未捷身先死，长使英雄泪满襟。</div><div class="sentence-expr">壮志难酬。</div></div><div class="sentence-row"><div class="sentence-num">140</div><div class="sentence-text">欲穷千里目，更上一层楼。</div><div class="sentence-expr">进取之心。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="93">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 141 — 145 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">141</div><div class="sentence-text">疾风知劲草，板荡识诚臣。</div><div class="sentence-expr">患难见真情。</div></div><div class="sentence-row"><div class="sentence-num">142</div><div class="sentence-text">人间四月芳菲尽，山寺桃花始盛开。</div><div class="sentence-expr">机缘各异。</div></div><div class="sentence-row"><div class="sentence-num">143</div><div class="sentence-text">遍身罗绮者，不是养蚕人。</div><div class="sentence-expr">世事不公。</div></div><div class="sentence-row"><div class="sentence-num">144</div><div class="sentence-text">今朝有酒今朝醉，明日愁来明日愁。</div><div class="sentence-expr">及时行乐。</div></div><div class="sentence-row"><div class="sentence-num">145</div><div class="sentence-text">求得百花成蜜后，为谁辛苦为谁甜。</div><div class="sentence-expr">徒劳无功。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="94">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 146 — 150 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">146</div><div class="sentence-text">时人不识凌云木，直待凌云始道高。</div><div class="sentence-expr">慧眼难寻。</div></div><div class="sentence-row"><div class="sentence-num">147</div><div class="sentence-text">不要人夸好颜色，只留清气满乾坤。</div><div class="sentence-expr">淡泊高洁。</div></div><div class="sentence-row"><div class="sentence-num">148</div><div class="sentence-text">居高声自远，非是藉秋风。</div><div class="sentence-expr">德高自重。</div></div><div class="sentence-row"><div class="sentence-num">149</div><div class="sentence-text">露从今夜白，月是故乡明。</div><div class="sentence-expr">思乡情浓。</div></div><div class="sentence-row"><div class="sentence-num">150</div><div class="sentence-text">溪云初起日沉阁，山雨欲来风满楼。</div><div class="sentence-expr">危机暗涌。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="95">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 151 — 155 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">151</div><div class="sentence-text">旧时王谢堂前燕，飞入寻常百姓家。</div><div class="sentence-expr">盛衰无常。</div></div><div class="sentence-row"><div class="sentence-num">152</div><div class="sentence-text">东边日出西边雨，道是无晴却有晴。</div><div class="sentence-expr">暧昧难明。</div></div><div class="sentence-row"><div class="sentence-num">153</div><div class="sentence-text">读书不觉已春深，一寸光阴一寸金。</div><div class="sentence-expr">专注忘我。</div></div><div class="sentence-row"><div class="sentence-num">154</div><div class="sentence-text">业精于勤荒于嬉，行成于思毁于随。</div><div class="sentence-expr">勤思慎行。</div></div><div class="sentence-row"><div class="sentence-num">155</div><div class="sentence-text">昆山玉碎凤凰叫，芙蓉泣露香兰笑。</div><div class="sentence-expr">绝美之境。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="96">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 156 — 160 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">156</div><div class="sentence-text">宁可食无肉，不可居无竹。</div><div class="sentence-expr">风雅之志。</div></div><div class="sentence-row"><div class="sentence-num">157</div><div class="sentence-text">春宵一刻值千金，花有清香月有阴。</div><div class="sentence-expr">良辰易逝。</div></div><div class="sentence-row"><div class="sentence-num">158</div><div class="sentence-text">假作真时真亦假，无为有处有还无。</div><div class="sentence-expr">虚实难辨。</div></div><div class="sentence-row"><div class="sentence-num">159</div><div class="sentence-text">身后有余忘缩手，眼前无路想回头。</div><div class="sentence-expr">贪海交织。</div></div><div class="sentence-row"><div class="sentence-num">160</div><div class="sentence-text">机关算尽太聪明，反误了卿卿性命。</div><div class="sentence-expr">弄巧成拙。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="97">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 161 — 165 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">161</div><div class="sentence-text">质本洁来还洁去，强于污淖陷渠沟。</div><div class="sentence-expr">坚守本心。</div></div><div class="sentence-row"><div class="sentence-num">162</div><div class="sentence-text">一朝春尽红颜老，花落人亡两不知。</div><div class="sentence-expr">红颜薄命。</div></div><div class="sentence-row"><div class="sentence-num">163</div><div class="sentence-text">世事洞明皆学问，人情练达即文章。</div><div class="sentence-expr">处世之道。</div></div><div class="sentence-row"><div class="sentence-num">164</div><div class="sentence-text">好风凭借力，送我上青云。</div><div class="sentence-expr">借势而为。</div></div><div class="sentence-row"><div class="sentence-num">165</div><div class="sentence-text">满纸荒唐言，一把辛酸泪。</div><div class="sentence-expr">字字血泪。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="98">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 166 — 170 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">166</div><div class="sentence-text">寒塘渡鹤影，冷月葬花魂。</div><div class="sentence-expr">凄美孤寂。</div></div><div class="sentence-row"><div class="sentence-num">167</div><div class="sentence-text">满不怜春柳春花满地，落不完春雨春风满倦。表达：相思成疾。</div><div class="sentence-expr">相思成疾。</div></div><div class="sentence-row"><div class="sentence-num">168</div><div class="sentence-text">枕上轻寒窗外雨，眼前春色梦中人。</div><div class="sentence-expr">露寐思服。</div></div><div class="sentence-row"><div class="sentence-num">169</div><div class="sentence-text">弱水三千只取一瓢，繁华三千只为一人才。表达：专情不渝。</div><div class="sentence-expr">专情不渝。</div></div><div class="sentence-row"><div class="sentence-num">170</div><div class="sentence-text">我断不思量，你莫思量我。</div><div class="sentence-expr">决绝放手。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="99">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 171 — 175 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">171</div><div class="sentence-text">山中何事？松花酿酒，春水煎茶。</div><div class="sentence-expr">隐逸之趣。</div></div><div class="sentence-row"><div class="sentence-num">172</div><div class="sentence-text">江南无所有，聊赠一枝春。</div><div class="sentence-expr">以春寄情。</div></div><div class="sentence-row"><div class="sentence-num">173</div><div class="sentence-text">人生如逆旅，我亦是行人。</div><div class="sentence-expr">豁达漂泊。</div></div><div class="sentence-row"><div class="sentence-num">174</div><div class="sentence-text">小舟从此逝，江海寄余生。</div><div class="sentence-expr">浪迹天涯。</div></div><div class="sentence-row"><div class="sentence-num">175</div><div class="sentence-text">何时仗尔看南雪，我与梅花两白头。</div><div class="sentence-expr">孤傲相伴。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="100">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 176 — 180 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">176</div><div class="sentence-text">世间无限丹青手，一片伤心画不成。</div><div class="sentence-expr">悲难描摹。</div></div><div class="sentence-row"><div class="sentence-num">177</div><div class="sentence-text">若教解语应倾国，任是无情也动人。</div><div class="sentence-expr">美不可言。</div></div><div class="sentence-row"><div class="sentence-num">178</div><div class="sentence-text">惟将终夜长开眼，报答平生未展眉。</div><div class="sentence-expr">愧疚难偿。</div></div><div class="sentence-row"><div class="sentence-num">179</div><div class="sentence-text">从此无心爱良夜，任他明月下西楼。</div><div class="sentence-expr">心死如灰。</div></div><div class="sentence-row"><div class="sentence-num">180</div><div class="sentence-text">别后相思空一水，重来回首已三生。</div><div class="sentence-expr">轮回难断。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="101">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 181 — 185 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">181</div><div class="sentence-text">三千世界鸦杀尽，与君共寝到天明。</div><div class="sentence-expr">癫狂独占。</div></div><div class="sentence-row"><div class="sentence-num">182</div><div class="sentence-text">天不老，情难绝。心似双丝网，中有千千结。</div><div class="sentence-expr">情网难逃。</div></div><div class="sentence-row"><div class="sentence-num">183</div><div class="sentence-text">愿为西南风，长逝入君怀。</div><div class="sentence-expr">化风相随。</div></div><div class="sentence-row"><div class="sentence-num">184</div><div class="sentence-text">思君如满月，夜夜减清辉。</div><div class="sentence-expr">日渐憔悴。</div></div><div class="sentence-row"><div class="sentence-num">185</div><div class="sentence-text">空山新雨后，天气晚来秋。</div><div class="sentence-expr">清幽静谧。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="102">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 186 — 190 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">186</div><div class="sentence-text">绿蚁新醅酒，红泥小火炉。</div><div class="sentence-expr">闲适温暖。</div></div><div class="sentence-row"><div class="sentence-num">187</div><div class="sentence-text">晚来天欲雪，能饮一杯无？</div><div class="sentence-expr">邀友共暖。</div></div><div class="sentence-row"><div class="sentence-num">188</div><div class="sentence-text">云想衣裳花想容，春风拂槛露华浓。</div><div class="sentence-expr">绝代佳人。</div></div><div class="sentence-row"><div class="sentence-num">189</div><div class="sentence-text">清水出芙蓉，天然去雕饰。</div><div class="sentence-expr">纯真之美。</div></div><div class="sentence-row"><div class="sentence-num">190</div><div class="sentence-text">醉后不知天在水，满船清梦压星河。</div><div class="sentence-expr">梦幻迷离。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="103">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 191 — 195 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">191</div><div class="sentence-text">我本楚狂人，风歌笑孔丘。</div><div class="sentence-expr">狂放不羁。</div></div><div class="sentence-row"><div class="sentence-num">192</div><div class="sentence-text">兴酣落笔摇五岳，诗成笑傲凌沧洲。</div><div class="sentence-expr">豪气冲天。</div></div><div class="sentence-row"><div class="sentence-num">193</div><div class="sentence-text">人生不相见，动如参与商。</div><div class="sentence-expr">聚少离多。</div></div><div class="sentence-row"><div class="sentence-num">194</div><div class="sentence-text">千秋万岁名，寂寞身后事。</div><div class="sentence-expr">身后凄凉。</div></div><div class="sentence-row"><div class="sentence-num">195</div><div class="sentence-text">细雨鱼儿出，微风燕子斜。</div><div class="sentence-expr">自然生趣。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="104">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 196 — 200 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">196</div><div class="sentence-text">星垂平野阔，月涌大江流。</div><div class="sentence-expr">天地壮阔。</div></div><div class="sentence-row"><div class="sentence-num">197</div><div class="sentence-text">飘飘何所似，天地一沙鸥。</div><div class="sentence-expr">漂泊无依。</div></div><div class="sentence-row"><div class="sentence-num">198</div><div class="sentence-text">文章憎命达，魑魅喜人过。</div><div class="sentence-expr">文才多舛。</div></div><div class="sentence-row"><div class="sentence-num">199</div><div class="sentence-text">冠盖满京华，斯人独憔悴。</div><div class="sentence-expr">孤高落寞。</div></div><div class="sentence-row"><div class="sentence-num">200</div><div class="sentence-text">笔落惊风雨，诗成泣鬼神。</div><div class="sentence-expr">才华惊天。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="105">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 201 — 205 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">201</div><div class="sentence-text">停车坐爱枫林晚，霜叶红于二月花。</div><div class="sentence-expr">秋色醉人。</div></div><div class="sentence-row"><div class="sentence-num">202</div><div class="sentence-text">折戟沉沙铁未销，自将磨洗认前朝。</div><div class="sentence-expr">历史遗痕。</div></div><div class="sentence-row"><div class="sentence-num">203</div><div class="sentence-text">东风袅袅泛崇光，香雾空蒙月转廊。</div><div class="sentence-expr">月夜花影。</div></div><div class="sentence-row"><div class="sentence-num">204</div><div class="sentence-text">竹外桃花三两枝，春江水暖鸭先知。</div><div class="sentence-expr">春意初探。</div></div><div class="sentence-row"><div class="sentence-num">205</div><div class="sentence-text">欲把西湖比西子，淡妆浓抹总相宜。</div><div class="sentence-expr">天然风韵。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="106">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 206 — 210 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">206</div><div class="sentence-text">横看成岭侧成峰，远近高低各不同。</div><div class="sentence-expr">视角多变。</div></div><div class="sentence-row"><div class="sentence-num">207</div><div class="sentence-text">不识庐山真面目，只缘身在此山中。</div><div class="sentence-expr">当局者迷。</div></div><div class="sentence-row"><div class="sentence-num">208</div><div class="sentence-text">回首向来萧瑟处，归去，也无风雨也无晴。表达：超然豁达。</div><div class="sentence-expr">超然豁达。</div></div><div class="sentence-row"><div class="sentence-num">209</div><div class="sentence-text">小舟从此逝，江海寄余生。</div><div class="sentence-expr">浪迹江湖。</div></div><div class="sentence-row"><div class="sentence-num">210</div><div class="sentence-text">枝上柳绵吹又少，天涯何处无芳草。</div><div class="sentence-expr">豁达释怀。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="107">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 211 — 215 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">211</div><div class="sentence-text">笑渐不闻声渐悄，多情却被无情恼。</div><div class="sentence-expr">自作多情。</div></div><div class="sentence-row"><div class="sentence-num">212</div><div class="sentence-text">人生到处知何似，应似飞鸿踏雪泥。</div><div class="sentence-expr">漂泊无痕。</div></div><div class="sentence-row"><div class="sentence-num">213</div><div class="sentence-text">粗缯大布裹生涯，腹有诗书气自华。</div><div class="sentence-expr">才华为魂。</div></div><div class="sentence-row"><div class="sentence-num">214</div><div class="sentence-text">欲寄相思千点泪，流不到，楚江东。</div><div class="sentence-expr">遥寄无门。</div></div><div class="sentence-row"><div class="sentence-num">215</div><div class="sentence-text">试问岭南应不好，却道：此心安处是吾乡。表达：随遇而安。</div><div class="sentence-expr">随遇而安。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="108">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 216 — 220 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">216</div><div class="sentence-text">莫听穿林打叶声，何妨吟啸且徐行。表达：从容前行。</div><div class="sentence-expr">从容前行。</div></div><div class="sentence-row"><div class="sentence-num">217</div><div class="sentence-text">拣尽寒枝不肯栖，寂寞沙洲冷。</div><div class="sentence-expr">孤高自守。</div></div><div class="sentence-row"><div class="sentence-num">218</div><div class="sentence-text">夜饮东坡醒复醉，归来仿佛三更。</div><div class="sentence-expr">醉眠洒脱。</div></div><div class="sentence-row"><div class="sentence-num">219</div><div class="sentence-text">长恨此身非我有，何时忘却营营。</div><div class="sentence-expr">身不由己。</div></div><div class="sentence-row"><div class="sentence-num">220</div><div class="sentence-text">小轩窗，正梳妆。相顾无言，惟有泪千行。表达：生死断肠。</div><div class="sentence-expr">生死断肠。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="109">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 221 — 225 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">221</div><div class="sentence-text">十年生死两茫茫，不思量，自难忘。表达：刻骨铭心。</div><div class="sentence-expr">刻骨铭心。</div></div><div class="sentence-row"><div class="sentence-num">222</div><div class="sentence-text">会挽雕弓如满月，西北望，射天狼。</div><div class="sentence-expr">报国壮志。</div></div><div class="sentence-row"><div class="sentence-num">223</div><div class="sentence-text">人有悲欢离合，月有阴晴圆缺。</div><div class="sentence-expr">世事无常。</div></div><div class="sentence-row"><div class="sentence-num">224</div><div class="sentence-text">但愿人长久，千里共婵娟。</div><div class="sentence-expr">遥祝平安。</div></div><div class="sentence-row"><div class="sentence-num">225</div><div class="sentence-text">大江东去，浪淘尽，千古风流人物。</div><div class="sentence-expr">历史洪流。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="110">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 226 — 230 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">226</div><div class="sentence-text">江山如画，一时多少豪杰。</div><div class="sentence-expr">英雄辈出。</div></div><div class="sentence-row"><div class="sentence-num">227</div><div class="sentence-text">多情应笑我，早生华发。</div><div class="sentence-expr">壮志未酬。</div></div><div class="sentence-row"><div class="sentence-num">228</div><div class="sentence-text">回首向来萧瑟处，归去，也无风雨也无晴。表达：心境澄明。</div><div class="sentence-expr">心境澄明。</div></div><div class="sentence-row"><div class="sentence-num">229</div><div class="sentence-text">一点浩然气，千里快哉风。</div><div class="sentence-expr">坦荡洒脱。</div></div><div class="sentence-row"><div class="sentence-num">230</div><div class="sentence-text">殷勤昨夜三更雨，又得浮生一日凉。</div><div class="sentence-expr">苦中作乐。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="111">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 231 — 235 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">231</div><div class="sentence-text">兴尽晚回舟，误入藕花深处。</div><div class="sentence-expr">随性而往。</div></div><div class="sentence-row"><div class="sentence-num">232</div><div class="sentence-text">知否，知否？应是绿肥红瘦。</div><div class="sentence-expr">时光流逝。</div></div><div class="sentence-row"><div class="sentence-num">233</div><div class="sentence-text">此情无计可消除，才下眉头，却上心头。</div><div class="sentence-expr">相思难断。</div></div><div class="sentence-row"><div class="sentence-num">234</div><div class="sentence-text">物是人非事事休，欲语泪先流。</div><div class="sentence-expr">睹物伤情。</div></div><div class="sentence-row"><div class="sentence-num">235</div><div class="sentence-text">只恐双溪舴艋舟，载不动许多愁。</div><div class="sentence-expr">愁重难载。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="112">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 236 — 240 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">236</div><div class="sentence-text">寻寻觅觅，冷冷清清，凄凄惨惨戚戚。</div><div class="sentence-expr">孤寂凄苦。</div></div><div class="sentence-row"><div class="sentence-num">237</div><div class="sentence-text">梧桐更兼细雨，到黄昏、点点滴滴。</div><div class="sentence-expr">愁绪缠绵。</div></div><div class="sentence-row"><div class="sentence-num">238</div><div class="sentence-text">生当作人杰，死亦为鬼雄。表达：刚烈不屈。</div><div class="sentence-expr">刚烈不屈。</div></div><div class="sentence-row"><div class="sentence-num">239</div><div class="sentence-text">至今思项羽，不肯过江东。</div><div class="sentence-expr">气节长存。</div></div><div class="sentence-row"><div class="sentence-num">240</div><div class="sentence-text">醉里插花花莫笑，可怜春似人将老。</div><div class="sentence-expr">暮春自嘲。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="113">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 241 — 245 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">241</div><div class="sentence-text">当年万里觅封侯，匹马戍梁州。</div><div class="sentence-expr">壮志未酬。</div></div><div class="sentence-row"><div class="sentence-num">242</div><div class="sentence-text">关河梦断何处？尘暗旧貂裘。</div><div class="sentence-expr">功业成空。</div></div><div class="sentence-row"><div class="sentence-num">243</div><div class="sentence-text">胡未灭，鬓先秋，泪空流。</div><div class="sentence-expr">遗恨难平。</div></div><div class="sentence-row"><div class="sentence-num">244</div><div class="sentence-text">无意苦争春，一任群芳妒。</div><div class="sentence-expr">孤高傲世。</div></div><div class="sentence-row"><div class="sentence-num">245</div><div class="sentence-text">零落成泥碾作尘，只有香如故。</div><div class="sentence-expr">气节不灭。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="114">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 246 — 250 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">246</div><div class="sentence-text">山重水复疑无路，柳暗花明又一村。</div><div class="sentence-expr">绝处逢生。</div></div><div class="sentence-row"><div class="sentence-num">247</div><div class="sentence-text">纸上得来终觉浅，绝知此事要躬行。表达：实践出真知。</div><div class="sentence-expr">实践出真知。</div></div><div class="sentence-row"><div class="sentence-num">248</div><div class="sentence-text">王师北定中原日，家祭无忘告乃翁。</div><div class="sentence-expr">至死忧国。</div></div><div class="sentence-row"><div class="sentence-num">249</div><div class="sentence-text">小楼一夜听春雨，深巷明朝卖杏花。表达：江南春晓。</div><div class="sentence-expr">江南春晓。</div></div><div class="sentence-row"><div class="sentence-num">250</div><div class="sentence-text">矮纸斜行闲作草，晴窗细乳戏分茶。</div><div class="sentence-expr">闲适雅趣。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="115">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 251 — 255 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">251</div><div class="sentence-text">夜阑卧听风吹雨，铁马冰河入梦来。</div><div class="sentence-expr">老骥伏枥。</div></div><div class="sentence-row"><div class="sentence-num">252</div><div class="sentence-text">出师一表真名世，千载谁堪伯仲间。</div><div class="sentence-expr">救仰先贤。</div></div><div class="sentence-row"><div class="sentence-num">253</div><div class="sentence-text">位卑未敢忘忧国，事定犹须待阖棺。</div><div class="sentence-expr">赤子之心。</div></div><div class="sentence-row"><div class="sentence-num">254</div><div class="sentence-text">伤心桥下春波绿，曾是惊鸿照影来。表达：旧梦难追。</div><div class="sentence-expr">旧梦难追。</div></div><div class="sentence-row"><div class="sentence-num">255</div><div class="sentence-text">世味年来薄似纱，谁令骑马客京华。</div><div class="sentence-expr">世态炎凉。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="116">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 256 — 260 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">256</div><div class="sentence-text">素衣莫起风尘叹，犹及清明可到家。</div><div class="sentence-expr">思归心切。</div></div><div class="sentence-row"><div class="sentence-num">257</div><div class="sentence-text">三万里河东入海，五千仞岳上摩天。</div><div class="sentence-expr">山河壮丽。</div></div><div class="sentence-row"><div class="sentence-num">258</div><div class="sentence-text">遗民泪尽胡尘里，南望王师又一年。</div><div class="sentence-expr">望眼欲穿。</div></div><div class="sentence-row"><div class="sentence-num">259</div><div class="sentence-text">古人学问无遗力，少壮工夫老始成。</div><div class="sentence-expr">厚积薄发。</div></div><div class="sentence-row"><div class="sentence-num">260</div><div class="sentence-text">衣上征尘杂酒痕，远游无处不消魂。</div><div class="sentence-expr">羁旅沧桑。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="117">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 261 — 265 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">261</div><div class="sentence-text">死去元知万事空，但悲不见九州同。</div><div class="sentence-expr">死不瞑目。</div></div><div class="sentence-row"><div class="sentence-num">262</div><div class="sentence-text">楼船夜雪瓜洲渡，铁马秋风大散关。</div><div class="sentence-expr">征战豪情。</div></div><div class="sentence-row"><div class="sentence-num">263</div><div class="sentence-text">出师一表通今古，夜半挑灯更细看。</div><div class="sentence-expr">激贤思齐。</div></div><div class="sentence-row"><div class="sentence-num">264</div><div class="sentence-text">何方可化身千亿，一树梅花一放翁。</div><div class="sentence-expr">痴梅成癖。</div></div><div class="sentence-row"><div class="sentence-num">265</div><div class="sentence-text">红酥手，黄縢酒，满城春色宫墙柳。</div><div class="sentence-expr">物是人非。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="118">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 266 — 270 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">266</div><div class="sentence-text">春如旧，人空瘦，泪痕红浥鲛绡透。</div><div class="sentence-expr">旧情难续。</div></div><div class="sentence-row"><div class="sentence-num">267</div><div class="sentence-text">山盟虽在，锦书难托。莫、莫、莫！</div><div class="sentence-expr">情断难言。</div></div><div class="sentence-row"><div class="sentence-num">268</div><div class="sentence-text">世情薄，人情恶，雨送黄昏花易落。</div><div class="sentence-expr">世态凉薄。</div></div><div class="sentence-row"><div class="sentence-num">269</div><div class="sentence-text">角声寒，夜阑珊。怕人寻问，咽泪装欢。</div><div class="sentence-expr">强颜欢笑。</div></div><div class="sentence-row"><div class="sentence-num">270</div><div class="sentence-text">人成各，今非昨，病魂常似秋千索。</div><div class="sentence-expr">形单影只。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="119">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 271 — 275 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">271</div><div class="sentence-text">欲买桂花同载酒，终不似，少年游。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">272</div><div class="sentence-text">少年听雨歌楼上，红烛昏罗帐。</div><div class="sentence-expr">年少轻狂。</div></div><div class="sentence-row"><div class="sentence-num">273</div><div class="sentence-text">壮年听雨客舟中，江阔云低，断雁叫西风。表达：漂泊孤寂。</div><div class="sentence-expr">漂泊孤寂。</div></div><div class="sentence-row"><div class="sentence-num">274</div><div class="sentence-text">而今听雨僧庐下，鬓已星星也。</div><div class="sentence-expr">暮年沧桑。</div></div><div class="sentence-row"><div class="sentence-num">275</div><div class="sentence-text">悲欢离合总无情，一任阶前点滴到天明。表达：看淡世事。</div><div class="sentence-expr">看淡世事。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="120">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 276 — 280 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">276</div><div class="sentence-text">平生塞北江南，归来华发苍颜。</div><div class="sentence-expr">奔波一生。</div></div><div class="sentence-row"><div class="sentence-num">277</div><div class="sentence-text">布被秋宵梦觉，眼前万里江山。</div><div class="sentence-expr">忧国入梦。</div></div><div class="sentence-row"><div class="sentence-num">278</div><div class="sentence-text">醉里且贪欢笑，要愁那得工夫。</div><div class="sentence-expr">强作豁达。</div></div><div class="sentence-row"><div class="sentence-num">279</div><div class="sentence-text">昨夜松边醉倒，问松我醉何如。</div><div class="sentence-expr">醉态可掬。</div></div><div class="sentence-row"><div class="sentence-num">280</div><div class="sentence-text">却将万字平戎策，换得东家种树书。</div><div class="sentence-expr">壮志难酬。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="121">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 281 — 285 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">281</div><div class="sentence-text">唤起一天明月，照我满怀冰雪。</div><div class="sentence-expr">高洁自许。</div></div><div class="sentence-row"><div class="sentence-num">282</div><div class="sentence-text">九万里风鹏正举。风休住，蓬舟吹取三山去！</div><div class="sentence-expr">乘风破浪。</div></div><div class="sentence-row"><div class="sentence-num">283</div><div class="sentence-text">春愁不破又成群，衣上泪痕和酒痕。</div><div class="sentence-expr">孤寂凄苦。</div></div><div class="sentence-row"><div class="sentence-num">284</div><div class="sentence-text">机中锦字论长恨，楼上花枝笑独眠。</div><div class="sentence-expr">愁深难述。</div></div><div class="sentence-row"><div class="sentence-num">285</div><div class="sentence-text">衣带渐宽终不悔，为伊消得人憔悴。</div><div class="sentence-expr">相思憔悴。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="122">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 286 — 290 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">286</div><div class="sentence-text">料得年年肠断处，明月夜，短松冈。</div><div class="sentence-expr">仙境幻梦。</div></div><div class="sentence-row"><div class="sentence-num">287</div><div class="sentence-text">千磨万击还坚劲，任尔东西南北风。</div><div class="sentence-expr">刚烈不屈。</div></div><div class="sentence-row"><div class="sentence-num">288</div><div class="sentence-text">粉骨碎身全不怕，要留清白在人间。</div><div class="sentence-expr">气节长存。</div></div><div class="sentence-row"><div class="sentence-num">289</div><div class="sentence-text">燕子来时春事，枝藜来往绿荫中。</div><div class="sentence-expr">暮春自嘲。</div></div><div class="sentence-row"><div class="sentence-num">290</div><div class="sentence-text">塞上长城空自许，镜中衰鬓已先斑。</div><div class="sentence-expr">壮志未酬。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="123">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 291 — 295 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">291</div><div class="sentence-text">共君前后俱从事，差见功名与别人。</div><div class="sentence-expr">功业成空。</div></div><div class="sentence-row"><div class="sentence-num">292</div><div class="sentence-text">还君明珠双泪垂，恨不相逢未嫁时。表达：遗恨难平。</div><div class="sentence-expr">遗恨难平。</div></div><div class="sentence-row"><div class="sentence-num">293</div><div class="sentence-text">独坐幽篁里，弹琴复长啸。</div><div class="sentence-expr">孤高傲世。</div></div><div class="sentence-row"><div class="sentence-num">294</div><div class="sentence-text">王师北定中原日，家祭无忘告乃翁。表达：气节不灭。</div><div class="sentence-expr">气节不灭。</div></div><div class="sentence-row"><div class="sentence-num">295</div><div class="sentence-text">长风破浪会有时，直挂云帆济沧海。表达：绝处逢生。</div><div class="sentence-expr">绝处逢生。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="124">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 296 — 300 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">296</div><div class="sentence-text">古人学问无遗力，少壮工夫老始成。表达：实践出真知。</div><div class="sentence-expr">实践出真知。</div></div><div class="sentence-row"><div class="sentence-num">297</div><div class="sentence-text">醉卧沙场君莫笑，古来征战几人回。表达：至死忧国。</div><div class="sentence-expr">至死忧国。</div></div><div class="sentence-row"><div class="sentence-num">298</div><div class="sentence-text">忽从林樾见朝晖，湿觞轻云半欲飞。</div><div class="sentence-expr">江南春晓。</div></div><div class="sentence-row"><div class="sentence-num">299</div><div class="sentence-text">雅致装庭宇，黄花开淡泞。</div><div class="sentence-expr">闲适雅趣。</div></div><div class="sentence-row"><div class="sentence-num">300</div><div class="sentence-text">烈士暮年，壮心不已。</div><div class="sentence-expr">老骥伏枥。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="125">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 301 — 305 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">301</div><div class="sentence-text">一声梧叶一声秋，一点芭蕉一点愁。</div><div class="sentence-expr">秋色醉人。</div></div><div class="sentence-row"><div class="sentence-num">302</div><div class="sentence-text">夕阳西沉暮色浓,岁月落幕世事空。</div><div class="sentence-expr">历史遗痕。</div></div><div class="sentence-row"><div class="sentence-num">303</div><div class="sentence-text">深林人不知，明月来相照。</div><div class="sentence-expr">月夜花影。</div></div><div class="sentence-row"><div class="sentence-num">304</div><div class="sentence-text">春风轻拂,花香满园。</div><div class="sentence-expr">春意初探。</div></div><div class="sentence-row"><div class="sentence-num">305</div><div class="sentence-text">返景入深林，复照青苔上。</div><div class="sentence-expr">天然风韵。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="126">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 306 — 310 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">306</div><div class="sentence-text">月下飞天镜，云生结海楼。</div><div class="sentence-expr">视角多变。</div></div><div class="sentence-row"><div class="sentence-num">307</div><div class="sentence-text">不畏浮云遮望眼，只缘身在最高层。</div><div class="sentence-expr">当局者迷。</div></div><div class="sentence-row"><div class="sentence-num">308</div><div class="sentence-text">问我何以栖碧山，笑而不答心自闲。</div><div class="sentence-expr">超然豁达。</div></div><div class="sentence-row"><div class="sentence-num">309</div><div class="sentence-text">浪迹江湖忆旧游，故人生死各千秋。</div><div class="sentence-expr">浪迹江湖。</div></div><div class="sentence-row"><div class="sentence-num">310</div><div class="sentence-text">新松恨不高千尺，恶竹应须斩万竿。</div><div class="sentence-expr">豁达释怀。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="127">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 311 — 315 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">311</div><div class="sentence-text">笑渐不闻声渐悄，多情却被无情恼。表达：自作多情。</div><div class="sentence-expr">自作多情。</div></div><div class="sentence-row"><div class="sentence-num">312</div><div class="sentence-text">早秋惊落叶，飘零似客心。</div><div class="sentence-expr">漂泊无痕。</div></div><div class="sentence-row"><div class="sentence-num">313</div><div class="sentence-text">笔落惊风雨，诗成泣鬼神。表达：才华为魂。</div><div class="sentence-expr">才华为魂。</div></div><div class="sentence-row"><div class="sentence-num">314</div><div class="sentence-text">折取芬馨遥寄与，梅花开在小心西。</div><div class="sentence-expr">遥寄无门。</div></div><div class="sentence-row"><div class="sentence-num">315</div><div class="sentence-text">富贵非吾事，归与白鸥盟。</div><div class="sentence-expr">随遇而安。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="128">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 316 — 320 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">316</div><div class="sentence-text">人生有百年,何必多忧虑。</div><div class="sentence-expr">从容前行。</div></div><div class="sentence-row"><div class="sentence-num">317</div><div class="sentence-text">说法双关如此乐,听诗万首向何忧。</div><div class="sentence-expr">孤高自守。</div></div><div class="sentence-row"><div class="sentence-num">318</div><div class="sentence-text">开轩面场圃,把酒话桑麻。</div><div class="sentence-expr">醉眠洒脱。</div></div><div class="sentence-row"><div class="sentence-num">319</div><div class="sentence-text">白头搔更短，浑欲不胜簪。</div><div class="sentence-expr">身不由己。</div></div><div class="sentence-row"><div class="sentence-num">320</div><div class="sentence-text">君埋泉下泥销骨，我寄人间雪满头。表达：生死断肠。</div><div class="sentence-expr">生死断肠。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="129">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 321 — 325 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">321</div><div class="sentence-text">曾经沧海难为水，除却巫山不是云。表达：刻骨铭心。</div><div class="sentence-expr">刻骨铭心。</div></div><div class="sentence-row"><div class="sentence-num">322</div><div class="sentence-text">烽火连三月，家书抵万金。</div><div class="sentence-expr">报国壮志。</div></div><div class="sentence-row"><div class="sentence-num">323</div><div class="sentence-text">朱雀桥边野草花，乌衣巷口夕阳斜。</div><div class="sentence-expr">世事无常。</div></div><div class="sentence-row"><div class="sentence-num">324</div><div class="sentence-text">马上相逢无纸笔，凭君传语报平安。</div><div class="sentence-expr">遥祝平安。</div></div><div class="sentence-row"><div class="sentence-num">325</div><div class="sentence-text">雕栏玉砌应犹在，只是朱颜改。</div><div class="sentence-expr">历史洪流。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="130">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 326 — 330 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">326</div><div class="sentence-text">心怀壮志破云霄，才略超群展英风。</div><div class="sentence-expr">英雄辈出。</div></div><div class="sentence-row"><div class="sentence-num">327</div><div class="sentence-text">醉里挑灯看剑，梦回吹角连营。</div><div class="sentence-expr">壮志未酬。</div></div><div class="sentence-row"><div class="sentence-num">328</div><div class="sentence-text">不随晴野尽，独向深松积。</div><div class="sentence-expr">心境澄明。</div></div><div class="sentence-row"><div class="sentence-num">329</div><div class="sentence-text">却嫌脂粉污颜色，淡扫蛾眉朝至尊。</div><div class="sentence-expr">坦荡洒脱。</div></div><div class="sentence-row"><div class="sentence-num">330</div><div class="sentence-text">沉舟侧畔千帆过，病树前头万木春。表达：苦中作乐。</div><div class="sentence-expr">苦中作乐。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="131">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 331 — 335 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">331</div><div class="sentence-text">行到水穷处，坐看云起时。</div><div class="sentence-expr">随性而往。</div></div><div class="sentence-row"><div class="sentence-num">332</div><div class="sentence-text">少年易老学难成，一寸光阴不可轻。</div><div class="sentence-expr">时光流逝。</div></div><div class="sentence-row"><div class="sentence-num">333</div><div class="sentence-text">玲珑骰子安红豆，入骨相思知不知。表达：相思难断。</div><div class="sentence-expr">相思难断。</div></div><div class="sentence-row"><div class="sentence-num">334</div><div class="sentence-text">中秋独坐望长亭，遥寄相思万里传。</div><div class="sentence-expr">睹物伤情。</div></div><div class="sentence-row"><div class="sentence-num">335</div><div class="sentence-text">停杯投箸不能食，拔剑四顾心茫然。</div><div class="sentence-expr">愁重难载。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="132">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 336 — 340 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">336</div><div class="sentence-text">夜凉吹笛千山月，路暗迷人百种花。</div><div class="sentence-expr">孤寂凄苦。</div></div><div class="sentence-row"><div class="sentence-num">337</div><div class="sentence-text">抽刀断水水更流，举杯消愁愁更愁。</div><div class="sentence-expr">愁绪缠绵。</div></div><div class="sentence-row"><div class="sentence-num">338</div><div class="sentence-text">千磨万击还坚劲，任尔东西南北风。表达：刚烈不屈。</div><div class="sentence-expr">刚烈不屈。</div></div><div class="sentence-row"><div class="sentence-num">339</div><div class="sentence-text">孰知不向边庭苦,纵死犹闻侠骨香。</div><div class="sentence-expr">气节长存。</div></div><div class="sentence-row"><div class="sentence-num">340</div><div class="sentence-text">门径任荒芜,长年寝一床。</div><div class="sentence-expr">暮春自嘲。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="133">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 341 — 345 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">341</div><div class="sentence-text">丈夫五十功未立,提刀独立顾八荒。</div><div class="sentence-expr">壮志未酬。</div></div><div class="sentence-row"><div class="sentence-num">342</div><div class="sentence-text">据鞍空矍铄,壮志竟谁宣。</div><div class="sentence-expr">功业成空。</div></div><div class="sentence-row"><div class="sentence-num">343</div><div class="sentence-text">侯门一入深似海,从此萧郎是路人。</div><div class="sentence-expr">遗恨难平。</div></div><div class="sentence-row"><div class="sentence-num">344</div><div class="sentence-text">安能摧眉折腰事权贵,使我不得开心颜。</div><div class="sentence-expr">孤高傲世。</div></div><div class="sentence-row"><div class="sentence-num">345</div><div class="sentence-text">僵卧孤村不自哀,尚思为国戍轮台。</div><div class="sentence-expr">气节不灭。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="134">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 346 — 350 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">346</div><div class="sentence-text">咬定青山不放松,立根原在破岩中。</div><div class="sentence-expr">绝处逢生。</div></div><div class="sentence-row"><div class="sentence-num">347</div><div class="sentence-text">暗潮已到无人会,只有篙师识水痕。</div><div class="sentence-expr">实践出真知。</div></div><div class="sentence-row"><div class="sentence-num">348</div><div class="sentence-text">一身报国有万死,双鬓向人无再青。</div><div class="sentence-expr">至死忧国。</div></div><div class="sentence-row"><div class="sentence-num">349</div><div class="sentence-text">其一寒气凌空意正酣,春风还末下江南。</div><div class="sentence-expr">江南春晓。</div></div><div class="sentence-row"><div class="sentence-num">350</div><div class="sentence-text">采菊东篱下,悠悠见南山。</div><div class="sentence-expr">闲适雅趣。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="135">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 351 — 355 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">351</div><div class="sentence-text">烈士暮年,壮心不已。表达：老骥伏枥。</div><div class="sentence-expr">老骥伏枥。</div></div><div class="sentence-row"><div class="sentence-num">352</div><div class="sentence-text">屈平词赋悬日月,楚王台榭空山丘。</div><div class="sentence-expr">救仰先贤。</div></div><div class="sentence-row"><div class="sentence-num">353</div><div class="sentence-text">捐躯赴国难,视死忽如归！</div><div class="sentence-expr">赤子之心。</div></div><div class="sentence-row"><div class="sentence-num">354</div><div class="sentence-text">回首昔年心已冷,梦里依稀笑残颜。</div><div class="sentence-expr">旧梦难追。</div></div><div class="sentence-row"><div class="sentence-num">355</div><div class="sentence-text">看来世态炎凉尽,惟有明月无情贵。</div><div class="sentence-expr">世态炎凉。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="136">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 356 — 360 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">356</div><div class="sentence-text">故乡今夜思千里,霜鬓明朝又一年。</div><div class="sentence-expr">思归心切。</div></div><div class="sentence-row"><div class="sentence-num">357</div><div class="sentence-text">万里云间戍,立马剑门关。</div><div class="sentence-expr">山河壮丽。</div></div><div class="sentence-row"><div class="sentence-num">358</div><div class="sentence-text">白头吟处变,青眼望中穿。</div><div class="sentence-expr">望眼欲穿。</div></div><div class="sentence-row"><div class="sentence-num">359</div><div class="sentence-text">默默耕耘日久,积薄成厚展宏图。</div><div class="sentence-expr">厚积薄发。</div></div><div class="sentence-row"><div class="sentence-num">360</div><div class="sentence-text">曾为流离惯别家,等闲挥袂客天涯。</div><div class="sentence-expr">羁旅沧桑。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="137">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 361 — 365 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">361</div><div class="sentence-text">死去元知万事空,但悲不见九州同。表达：死不瞑目。</div><div class="sentence-expr">死不瞑目。</div></div><div class="sentence-row"><div class="sentence-num">362</div><div class="sentence-text">金戈铁马赴沙场,豪情壮志冲云霄。</div><div class="sentence-expr">征战豪情。</div></div><div class="sentence-row"><div class="sentence-num">363</div><div class="sentence-text">士不可以不弘毅,任重而道远。</div><div class="sentence-expr">激贤思齐。</div></div><div class="sentence-row"><div class="sentence-num">364</div><div class="sentence-text">不要人夸好颜色,但留清气满乾坤。</div><div class="sentence-expr">痴梅成癖。</div></div><div class="sentence-row"><div class="sentence-num">365</div><div class="sentence-text">年年岁岁花相似,岁岁年年人不同。</div><div class="sentence-expr">物是人非。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="138">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 366 — 370 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">366</div><div class="sentence-text">月下阁珊思故人,往昔笑颜如梦萦。</div><div class="sentence-expr">旧情难续。</div></div><div class="sentence-row"><div class="sentence-num">367</div><div class="sentence-text">闻君有两意,故来相决绝。</div><div class="sentence-expr">情断难言。</div></div><div class="sentence-row"><div class="sentence-num">368</div><div class="sentence-text">世味年来薄似纱,谁令骑马客京华。表达：世态凉薄。</div><div class="sentence-expr">世态凉薄。</div></div><div class="sentence-row"><div class="sentence-num">369</div><div class="sentence-text">强颜欢笑悲中藏,人前佯伴作乐未央。表达：强颜欢笑。</div><div class="sentence-expr">强颜欢笑。</div></div><div class="sentence-row"><div class="sentence-num">370</div><div class="sentence-text">众鸟高飞尽,孤云独去闲。</div><div class="sentence-expr">形单影只。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="139">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 371 — 375 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">371</div><div class="sentence-text">青山依旧在,几度夕阳红。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">372</div><div class="sentence-text">春风得意马蹄疾,一日看遍长安花。</div><div class="sentence-expr">年少轻狂。</div></div><div class="sentence-row"><div class="sentence-num">373</div><div class="sentence-text">闲坐夜明月,幽人弹素琴。</div><div class="sentence-expr">漂泊孤寂。</div></div><div class="sentence-row"><div class="sentence-num">374</div><div class="sentence-text">旧梦如烟随雨散,空庭落叶满秋山。</div><div class="sentence-expr">暮年沧桑。</div></div><div class="sentence-row"><div class="sentence-num">375</div><div class="sentence-text">红尘浮沉何足道,看淡名利心自宽。</div><div class="sentence-expr">看淡世事。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="140">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 376 — 380 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">376</div><div class="sentence-text">人生衣食固有端,作苦宁敢求自安。</div><div class="sentence-expr">奔波一生。</div></div><div class="sentence-row"><div class="sentence-num">377</div><div class="sentence-text">苟利国家生死以,岂因祸福避趋之。表达：忧国入梦。</div><div class="sentence-expr">忧国入梦。</div></div><div class="sentence-row"><div class="sentence-num">378</div><div class="sentence-text">笑对炎凉皆作梦,且将豁达写春秋。</div><div class="sentence-expr">强作豁达。</div></div><div class="sentence-row"><div class="sentence-num">379</div><div class="sentence-text">我醉欲眠卿且去,明朝有意抱琴来。</div><div class="sentence-expr">醉态可掬。</div></div><div class="sentence-row"><div class="sentence-num">380</div><div class="sentence-text">无边落木萧萧下,不尽长江滚滚来。</div><div class="sentence-expr">壮志难酬。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="141">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 381 — 385 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">381</div><div class="sentence-text">安能摧眉折腰事权贵,使我不得开心颜！表达：高洁自许。</div><div class="sentence-expr">高洁自许。</div></div><div class="sentence-row"><div class="sentence-num">382</div><div class="sentence-text">乘风破浪去,万里黄河翻。</div><div class="sentence-expr">乘风破浪。</div></div><div class="sentence-row"><div class="sentence-num">383</div><div class="sentence-text">此身饮罢无归处,独立苍茫自咏诗。</div><div class="sentence-expr">孤寂凄苦。</div></div><div class="sentence-row"><div class="sentence-num">384</div><div class="sentence-text">系我一生心,负你千行泪。</div><div class="sentence-expr">愁深难述。</div></div><div class="sentence-row"><div class="sentence-num">385</div><div class="sentence-text">前尘往事断肠诗,侬为君痴君不知。</div><div class="sentence-expr">相思憔悴。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="142">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 386 — 390 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">386</div><div class="sentence-text">梦里有时身化鹤,人间无数草为萤。</div><div class="sentence-expr">仙境幻梦。</div></div><div class="sentence-row"><div class="sentence-num">387</div><div class="sentence-text">壮志饥餐胡虏肉,笑谈渴饮匈奴血。</div><div class="sentence-expr">刚烈不屈。</div></div><div class="sentence-row"><div class="sentence-num">388</div><div class="sentence-text">我自横刀向天笑,去留肝胆两昆仑。</div><div class="sentence-expr">气节长存。</div></div><div class="sentence-row"><div class="sentence-num">389</div><div class="sentence-text">谷口春残黄鸟稀,辛夷花尽杏花飞。</div><div class="sentence-expr">暮春自嘲。</div></div><div class="sentence-row"><div class="sentence-num">390</div><div class="sentence-text">笔底明珠无处卖,闲抛闲掷野藤中。</div><div class="sentence-expr">壮志未酬。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="143">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 391 — 395 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">391</div><div class="sentence-text">青云志远空悲叹,功业未成梦已空。</div><div class="sentence-expr">功业成空。</div></div><div class="sentence-row"><div class="sentence-num">392</div><div class="sentence-text">惆怅人间万事违,两人同去一人归。</div><div class="sentence-expr">遗恨难平。</div></div><div class="sentence-row"><div class="sentence-num">393</div><div class="sentence-text">孤云独去闲,相期逸云汉。</div><div class="sentence-expr">孤高傲世。</div></div><div class="sentence-row"><div class="sentence-num">394</div><div class="sentence-text">王师北定中原日,家祭无忘告乃翁。表达：气节长存。</div><div class="sentence-expr">气节长存。</div></div><div class="sentence-row"><div class="sentence-num">395</div><div class="sentence-text">生年不满百,常怀千岁忧。</div><div class="sentence-expr">至死忧国。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="144">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 396 — 400 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">396</div><div class="sentence-text">吾生也有涯,而知也无涯。</div><div class="sentence-expr">实践出真知。</div></div><div class="sentence-row"><div class="sentence-num">397</div><div class="sentence-text">长太息以掩涕兮,哀民生之多艰。</div><div class="sentence-expr">至死忧国。</div></div><div class="sentence-row"><div class="sentence-num">398</div><div class="sentence-text">芳草萋萋连远岸,杨花漫漫遥轻舟。</div><div class="sentence-expr">江南春晓。</div></div><div class="sentence-row"><div class="sentence-num">399</div><div class="sentence-text">竹林深处有茅庵,人很闲时得静观。</div><div class="sentence-expr">闲适雅趣。</div></div><div class="sentence-row"><div class="sentence-num">400</div><div class="sentence-text">神龟虽寿,犹有竟时。</div><div class="sentence-expr">老骥伏枥。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="145">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 401 — 405 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">401</div><div class="sentence-text">身无彩凤双飞翼,心有灵犀一点通。</div><div class="sentence-expr">惺惺相惜。</div></div><div class="sentence-row"><div class="sentence-num">402</div><div class="sentence-text">云无心以出岫,鸟倦飞而知还。</div><div class="sentence-expr">洒脱自由。</div></div><div class="sentence-row"><div class="sentence-num">403</div><div class="sentence-text">三径就荒秋自好,一贫不转老相逼。</div><div class="sentence-expr">壮志难伸。</div></div><div class="sentence-row"><div class="sentence-num">404</div><div class="sentence-text">心愿终身偿,喜上眉梢乐无边。</div><div class="sentence-expr">终得所愿。</div></div><div class="sentence-row"><div class="sentence-num">405</div><div class="sentence-text">凭谁问:廉颇老矣,尚能饭否？</div><div class="sentence-expr">烈士暮年。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="146">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 406 — 410 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">406</div><div class="sentence-text">少年不识愁滋味,爱上层楼。爱上层楼,为赋新词强说愁。表达：年少轻狂。</div><div class="sentence-expr">年少轻狂。</div></div><div class="sentence-row"><div class="sentence-num">407</div><div class="sentence-text">欲说还休,却道天凉好个秋。</div><div class="sentence-expr">沧桑难言。</div></div><div class="sentence-row"><div class="sentence-num">408</div><div class="sentence-text">醉里挑灯看剑,梦回吹角连营。表达：热血难凉。</div><div class="sentence-expr">热血难凉。</div></div><div class="sentence-row"><div class="sentence-num">409</div><div class="sentence-text">八百里分麾下炙,五十弦翻塞外声。</div><div class="sentence-expr">沙场豪情。</div></div><div class="sentence-row"><div class="sentence-num">410</div><div class="sentence-text">马作的卢飞快,弓如霹雳弦惊。</div><div class="sentence-expr">征战骁勇。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="147">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 411 — 415 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">411</div><div class="sentence-text">了却君王天下事,赢得生前身后名。</div><div class="sentence-expr">功成身退。</div></div><div class="sentence-row"><div class="sentence-num">412</div><div class="sentence-text">却将万字平戎策,换得东家种树书。</div><div class="sentence-expr">壮志难酬。</div></div><div class="sentence-row"><div class="sentence-num">413</div><div class="sentence-text">昨夜斗回北,今朝岁起东。</div><div class="sentence-expr">辞旧迎新。</div></div><div class="sentence-row"><div class="sentence-num">414</div><div class="sentence-text">一年将尽夜,万里未归人。</div><div class="sentence-expr">思乡情切。</div></div><div class="sentence-row"><div class="sentence-num">415</div><div class="sentence-text">故园东望路漫漫,双袖龙钟泪不干。</div><div class="sentence-expr">思乡心切。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="148">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 416 — 420 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">416</div><div class="sentence-text">岭外音书绝,经冬复历春。</div><div class="sentence-expr">音讯隔绝。</div></div><div class="sentence-row"><div class="sentence-num">417</div><div class="sentence-text">来日绮窗前,寒梅着花未。</div><div class="sentence-expr">乡思之盼。</div></div><div class="sentence-row"><div class="sentence-num">418</div><div class="sentence-text">谁家玉笛暗飞声,散入春风满洛城。</div><div class="sentence-expr">春夜闻笛。</div></div><div class="sentence-row"><div class="sentence-num">419</div><div class="sentence-text">此夜曲中闻折柳,何人不起故园情。</div><div class="sentence-expr">故园之思。</div></div><div class="sentence-row"><div class="sentence-num">420</div><div class="sentence-text">黄河之水天上来,奔流到海不复回。</div><div class="sentence-expr">时光奔逝。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="149">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 421 — 425 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">421</div><div class="sentence-text">君不见,高堂明镜悲白发,朝如青丝暮成雪。</div><div class="sentence-expr">人生苦短。</div></div><div class="sentence-row"><div class="sentence-num">422</div><div class="sentence-text">抽刀断水水更流,举杯消愁愁更愁。</div><div class="sentence-expr">愁绪难解。</div></div><div class="sentence-row"><div class="sentence-num">423</div><div class="sentence-text">白发三千丈,缘愁似个长。</div><div class="sentence-expr">愁绪万千。</div></div><div class="sentence-row"><div class="sentence-num">424</div><div class="sentence-text">春风不相识,何事入罗帏。</div><div class="sentence-expr">春风撩人。</div></div><div class="sentence-row"><div class="sentence-num">425</div><div class="sentence-text">故人西辞黄鹤楼,烟花三月下扬州。</div><div class="sentence-expr">依依惜别。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="150">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 426 — 430 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">426</div><div class="sentence-text">孤帆远影碧空尽,唯见长江天际流。</div><div class="sentence-expr">依依不舍。</div></div><div class="sentence-row"><div class="sentence-num">427</div><div class="sentence-text">黄鹤楼送孟浩然之广陵</div><div class="sentence-expr">送别诗。</div></div><div class="sentence-row"><div class="sentence-num">428</div><div class="sentence-text">山中相送罢,日暮掩柴扉。</div><div class="sentence-expr">送别归来。</div></div><div class="sentence-row"><div class="sentence-num">429</div><div class="sentence-text">春草年年绿,王孙归不归。</div><div class="sentence-expr">盼归之情。</div></div><div class="sentence-row"><div class="sentence-num">430</div><div class="sentence-text">渭城朝雨浥轻尘,客舍青青柳色新。</div><div class="sentence-expr">送别之景。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="151">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 431 — 435 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">431</div><div class="sentence-text">劝君更尽一杯酒,西出阳关无故人。</div><div class="sentence-expr">依依惜别。</div></div><div class="sentence-row"><div class="sentence-num">432</div><div class="sentence-text">洛阳亲友如相问,一片冰心在玉壶。</div><div class="sentence-expr">高洁自持。</div></div><div class="sentence-row"><div class="sentence-num">433</div><div class="sentence-text">千里黄云白日曛,北风吹雁雪纷纷。</div><div class="sentence-expr">边塞苦寒。</div></div><div class="sentence-row"><div class="sentence-num">434</div><div class="sentence-text">莫愁前路无知己,天下谁人不识君。</div><div class="sentence-expr">豁达豪迈。</div></div><div class="sentence-row"><div class="sentence-num">435</div><div class="sentence-text">巴东三峡巫峡长,猿鸣三声泪沾裳。</div><div class="sentence-expr">巴山凄凉。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="152">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 436 — 440 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">436</div><div class="sentence-text">蜀道之难,难于上青天。</div><div class="sentence-expr">蜀道艰难。</div></div><div class="sentence-row"><div class="sentence-num">437</div><div class="sentence-text">黄鹤之矶尚在海,白云千载空悠悠。</div><div class="sentence-expr">岁月悠悠。</div></div><div class="sentence-row"><div class="sentence-num">438</div><div class="sentence-text">昔人已乘黄鹤去,此地空余黄鹤楼。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">439</div><div class="sentence-text">晴川历历汉阳树,芳草萋萋鹦鹉洲。</div><div class="sentence-expr">登临所见。</div></div><div class="sentence-row"><div class="sentence-num">440</div><div class="sentence-text">日暮乡关何处是,烟波江上使人愁。</div><div class="sentence-expr">思乡之愁。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="153">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 441 — 445 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">441</div><div class="sentence-text">关山月,关山月,客行竟日无休歇。</div><div class="sentence-expr">关山思乡。</div></div><div class="sentence-row"><div class="sentence-num">442</div><div class="sentence-text">欲上林亭雪正融,南山却在晓云中。</div><div class="sentence-expr">欲见还隐。</div></div><div class="sentence-row"><div class="sentence-num">443</div><div class="sentence-text">夜久梦回放,谁知千里心。</div><div class="sentence-expr">夜思远人。</div></div><div class="sentence-row"><div class="sentence-num">444</div><div class="sentence-text">秋浦猿夜愁,黄山堪白头。</div><div class="sentence-expr">秋夜愁思。</div></div><div class="sentence-row"><div class="sentence-num">445</div><div class="sentence-text">清溪非楚,长恨多愁。</div><div class="sentence-expr">清溪愁思。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="154">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 446 — 450 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">446</div><div class="sentence-text">不惜云中寄,何由世上传。</div><div class="sentence-expr">云中寄思。</div></div><div class="sentence-row"><div class="sentence-num">447</div><div class="sentence-text">客子出门行,岂知有归期。</div><div class="sentence-expr">客子思归。</div></div><div class="sentence-row"><div class="sentence-num">448</div><div class="sentence-text">忽闻悲鸣,声转哀伤。</div><div class="sentence-expr">悲鸣哀伤。</div></div><div class="sentence-row"><div class="sentence-num">449</div><div class="sentence-text">谁能为我传此情,泪满衣裳百忧生。</div><div class="sentence-expr">忧思满怀。</div></div><div class="sentence-row"><div class="sentence-num">450</div><div class="sentence-text">怜君孤舟夜,独钓寒江雪。</div><div class="sentence-expr">孤舟独钓。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="155">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 451 — 455 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">451</div><div class="sentence-text">十年一觉扬州梦,赢得青楼薄幸名。</div><div class="sentence-expr">荒唐岁月。</div></div><div class="sentence-row"><div class="sentence-num">452</div><div class="sentence-text">春风得意马蹄疾,一日看尽长安花。</div><div class="sentence-expr">金榜题名。</div></div><div class="sentence-row"><div class="sentence-num">453</div><div class="sentence-text">去年今日此门中,人面桃花相映红。</div><div class="sentence-expr">旧地怀人。</div></div><div class="sentence-row"><div class="sentence-num">454</div><div class="sentence-text">人面不知何处去,桃花依旧笑春风。</div><div class="sentence-expr">物是人非。</div></div><div class="sentence-row"><div class="sentence-num">455</div><div class="sentence-text">侯门一入深如海,从此萧郎是路人。</div><div class="sentence-expr">身份隔阂。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="156">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 456 — 460 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">456</div><div class="sentence-text">还君明珠双泪垂,恨不相逢未嫁时。</div><div class="sentence-expr">缘浅情深。</div></div><div class="sentence-row"><div class="sentence-num">457</div><div class="sentence-text">近水楼台先得月,向阳花木易为春。</div><div class="sentence-expr">先机占尽。</div></div><div class="sentence-row"><div class="sentence-num">458</div><div class="sentence-text">疏影横斜水清浅,暗香浮动月黄昏。</div><div class="sentence-expr">清幽雅境。</div></div><div class="sentence-row"><div class="sentence-num">459</div><div class="sentence-text">梅须逊雪三分白,雪却输梅一段香。</div><div class="sentence-expr">各有所长。</div></div><div class="sentence-row"><div class="sentence-num">460</div><div class="sentence-text">有梅无雪不精神,有雪无诗俗了人。</div><div class="sentence-expr">缺一不可。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="157">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 461 — 465 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">461</div><div class="sentence-text">日暮苍山远,天寒白屋贫。</div><div class="sentence-expr">清寒暮色。</div></div><div class="sentence-row"><div class="sentence-num">462</div><div class="sentence-text">柴门闻犬吠,风雪夜归人。</div><div class="sentence-expr">寒夜暖意。</div></div><div class="sentence-row"><div class="sentence-num">463</div><div class="sentence-text">月黑雁飞高,单于夜遁逃。</div><div class="sentence-expr">边塞鏖战。</div></div><div class="sentence-row"><div class="sentence-num">464</div><div class="sentence-text">醉卧沙场君莫笑,古来征战几人回。</div><div class="sentence-expr">视死如归。</div></div><div class="sentence-row"><div class="sentence-num">465</div><div class="sentence-text">秦时明月汉时关,万里长征人未还。</div><div class="sentence-expr">征人难归。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="158">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 466 — 470 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">466</div><div class="sentence-text">但使龙城飞将在,不教胡马度阴山。表达：家国情怀。</div><div class="sentence-expr">家国情怀。</div></div><div class="sentence-row"><div class="sentence-num">467</div><div class="sentence-text">黄沙百战穿金甲,不破楼兰终不还。表达：一往无前。</div><div class="sentence-expr">一往无前。</div></div><div class="sentence-row"><div class="sentence-num">468</div><div class="sentence-text">葡萄美酒夜光杯,欲饮琵琶马上催。</div><div class="sentence-expr">战前豪饮。</div></div><div class="sentence-row"><div class="sentence-num">469</div><div class="sentence-text">羌笛何须怨杨柳,春风不度玉门关。</div><div class="sentence-expr">边关苦寒。</div></div><div class="sentence-row"><div class="sentence-num">470</div><div class="sentence-text">忽见陌头杨柳色,悔教夫婿觅封侯。</div><div class="sentence-expr">悔别夫君。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="159">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 471 — 475 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">471</div><div class="sentence-text">洛阳亲友如相问,一片冰心在玉壶。表达：高洁自持。</div><div class="sentence-expr">高洁自持。</div></div><div class="sentence-row"><div class="sentence-num">472</div><div class="sentence-text">青海长云暗雪山,孤城遥望玉门关。</div><div class="sentence-expr">戍边孤寂。</div></div><div class="sentence-row"><div class="sentence-num">473</div><div class="sentence-text">撩乱边愁听不尽,高高秋月照长城。</div><div class="sentence-expr">秋夜戍愁。</div></div><div class="sentence-row"><div class="sentence-num">474</div><div class="sentence-text">战士军前半死生,美人帐下犹歌舞。</div><div class="sentence-expr">将士不公。</div></div><div class="sentence-row"><div class="sentence-num">475</div><div class="sentence-text">大漠风尘日色昏,红旗半卷出辕门。</div><div class="sentence-expr">沙场出征。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="160">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 476 — 480 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">476</div><div class="sentence-text">相看白刃血纷纷,死节从来岂顾勋。</div><div class="sentence-expr">赤胆忠心。</div></div><div class="sentence-row"><div class="sentence-num">477</div><div class="sentence-text">今夜不知何处宿,平沙万里绝人烟。</div><div class="sentence-expr">荒漠孤旅。</div></div><div class="sentence-row"><div class="sentence-num">478</div><div class="sentence-text">北风卷地白草折,胡天八月即飞雪。</div><div class="sentence-expr">塞外苦寒。</div></div><div class="sentence-row"><div class="sentence-num">479</div><div class="sentence-text">忽如一夜春风来,千树万树梨花开。</div><div class="sentence-expr">雪景奇美。</div></div><div class="sentence-row"><div class="sentence-num">480</div><div class="sentence-text">山回路转不见君,雪上空留马行处。</div><div class="sentence-expr">怅然若失。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="161">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 481 — 485 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">481</div><div class="sentence-text">浮云一别后,流水十年间。</div><div class="sentence-expr">时光荏苒。</div></div><div class="sentence-row"><div class="sentence-num">482</div><div class="sentence-text">闻道欲来相问讯,西楼望月几回圆。</div><div class="sentence-expr">盼友来访。</div></div><div class="sentence-row"><div class="sentence-num">483</div><div class="sentence-text">去年花里逢君别,今日花开又一年。</div><div class="sentence-expr">别后经年。</div></div><div class="sentence-row"><div class="sentence-num">484</div><div class="sentence-text">世事茫茫难自料,春愁黯黯独成眠。</div><div class="sentence-expr">前途未卜。</div></div><div class="sentence-row"><div class="sentence-num">485</div><div class="sentence-text">身多疾病思田里,邑有流亡愧俸钱。</div><div class="sentence-expr">忧民自责。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="162">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 486 — 490 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">486</div><div class="sentence-text">春潮带雨晚来急,野渡无人舟自横。</div><div class="sentence-expr">闲逸野趣。</div></div><div class="sentence-row"><div class="sentence-num">487</div><div class="sentence-text">独怜幽草涧边生,上有黄鹂深树鸣。</div><div class="sentence-expr">幽静生机。</div></div><div class="sentence-row"><div class="sentence-num">488</div><div class="sentence-text">雨中黄叶树,灯下白头人。</div><div class="sentence-expr">暮年孤寂。</div></div><div class="sentence-row"><div class="sentence-num">489</div><div class="sentence-text">以我独沉久,愧君相见频。</div><div class="sentence-expr">自惭形秽。</div></div><div class="sentence-row"><div class="sentence-num">490</div><div class="sentence-text">平生自有分,况是蔡家亲。</div><div class="sentence-expr">至亲厚谊。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="163">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 491 — 495 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">491</div><div class="sentence-text">世事短如春梦,人情薄似秋云。表达：世态炎凉。</div><div class="sentence-expr">世态炎凉。</div></div><div class="sentence-row"><div class="sentence-num">492</div><div class="sentence-text">明月楼高休独倚,酒入愁肠,化作相思泪。表达：孤夜难眠。</div><div class="sentence-expr">孤夜难眠。</div></div><div class="sentence-row"><div class="sentence-num">493</div><div class="sentence-text">莫听穿林打叶声,何妨吟啸且徐行。表达：从容不迫。</div><div class="sentence-expr">从容不迫。</div></div><div class="sentence-row"><div class="sentence-num">494</div><div class="sentence-text">愿我如星君如月,夜夜流光相皎洁。</div><div class="sentence-expr">长伴不离。</div></div><div class="sentence-row"><div class="sentence-num">495</div><div class="sentence-text">浮云一别后,流水十年间。表达：时光荏苒。</div><div class="sentence-expr">时光荏苒。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div><div class="slide sentences-page" data-index="164">
+  <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+  <div class="sentences-header">
+    <div class="title">古韵流芳</div>
+    <div class="subtitle">第 496 — 500 句 &middot; 五百佳句 &middot; 满腹经纶</div>
+  </div>
+  <div class="sentences-container"><div class="sentence-row"><div class="sentence-num">496</div><div class="sentence-text">闻道欲来相问讯,西楼望月几回圆。</div><div class="sentence-expr">盼友来访。</div></div><div class="sentence-row"><div class="sentence-num">497</div><div class="sentence-text">去年花里逢君别,今日花开又一年。</div><div class="sentence-expr">别后经年。</div></div><div class="sentence-row"><div class="sentence-num">498</div><div class="sentence-text">世事茫茫难自料,春愁黯黯独成眠。</div><div class="sentence-expr">前途未卜。</div></div><div class="sentence-row"><div class="sentence-num">499</div><div class="sentence-text">身多疾病思田里,邑有流亡愧俸钱。</div><div class="sentence-expr">忧民自责。</div></div><div class="sentence-row"><div class="sentence-num">500</div><div class="sentence-text">春潮带雨晚来急,野渡无人舟自横。</div><div class="sentence-expr">闲逸野趣。</div></div></div>
+  <div class="seal" style="font-size:14px;">诗<br>词<br>积<br>累</div>
+</div>
+<div class="progress-bar" id="progressBar"></div>
+<div class="nav">
+  <button onclick="toggleSidebar()">目录</button>
+  <button onclick="toggleFullscreen()">全屏</button>
+</div>
+<button class="toggle-sidebar" onclick="toggleSidebar()" aria-label="切换目录">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <line x1="4" y1="7" x2="20" y2="7"/>
+    <line x1="4" y1="12" x2="20" y2="12"/>
+    <line x1="4" y1="17" x2="20" y2="17"/>
+  </svg>
+</button>
+<div class="sidebar" id="sidebar">
+  <h2>古韵雅集</h2><h3 data-target="day-group"><span><span class="toggle">▼</span> 每日练嘴 <span class="count">(62)</span></span></h3><div class="sidebar-group" id="day-group"><a class="sidebar-item" data-goto="2">第 1 篇</a><a class="sidebar-item" data-goto="3">第 2 篇</a><a class="sidebar-item" data-goto="4">第 3 篇</a><a class="sidebar-item" data-goto="5">第 4 篇</a><a class="sidebar-item" data-goto="6">第 5 篇</a><a class="sidebar-item" data-goto="7">第 6 篇</a><a class="sidebar-item" data-goto="8">第 7 篇</a><a class="sidebar-item" data-goto="9">第 8 篇</a><a class="sidebar-item" data-goto="10">第 9 篇</a><a class="sidebar-item" data-goto="11">第 10 篇</a><a class="sidebar-item" data-goto="12">第 11 篇</a><a class="sidebar-item" data-goto="13">第 12 篇</a><a class="sidebar-item" data-goto="14">第 13 篇</a><a class="sidebar-item" data-goto="15">第 14 篇</a><a class="sidebar-item" data-goto="16">第 15 篇</a><a class="sidebar-item" data-goto="17">第 16 篇</a><a class="sidebar-item" data-goto="18">第 17 篇</a><a class="sidebar-item" data-goto="19">第 18 篇</a><a class="sidebar-item" data-goto="20">第 19 篇</a><a class="sidebar-item" data-goto="21">第 20 篇</a><a class="sidebar-item" data-goto="22">第 21 篇</a><a class="sidebar-item" data-goto="23">第 22 篇</a><a class="sidebar-item" data-goto="24">第 23 篇</a><a class="sidebar-item" data-goto="25">第 24 篇</a><a class="sidebar-item" data-goto="26">第 25 篇</a><a class="sidebar-item" data-goto="27">第 26 篇</a><a class="sidebar-item" data-goto="28">第 27 篇</a><a class="sidebar-item" data-goto="29">第 28 篇</a><a class="sidebar-item" data-goto="30">第 29 篇</a><a class="sidebar-item" data-goto="31">第 30 篇</a><a class="sidebar-item" data-goto="32">第 31 篇</a><a class="sidebar-item" data-goto="33">第 32 篇</a><a class="sidebar-item" data-goto="34">第 33 篇</a><a class="sidebar-item" data-goto="35">第 34 篇</a><a class="sidebar-item" data-goto="36">第 35 篇</a><a class="sidebar-item" data-goto="37">第 36 篇</a><a class="sidebar-item" data-goto="38">第 37 篇</a><a class="sidebar-item" data-goto="39">第 38 篇</a><a class="sidebar-item" data-goto="40">第 39 篇</a><a class="sidebar-item" data-goto="41">第 40 篇</a><a class="sidebar-item" data-goto="42">第 41 篇</a><a class="sidebar-item" data-goto="43">第 42 篇</a><a class="sidebar-item" data-goto="44">第 43 篇</a><a class="sidebar-item" data-goto="45">第 44 篇</a><a class="sidebar-item" data-goto="46">第 45 篇</a><a class="sidebar-item" data-goto="47">第 46 篇</a><a class="sidebar-item" data-goto="48">第 47 篇</a><a class="sidebar-item" data-goto="49">第 48 篇</a><a class="sidebar-item" data-goto="50">第 49 篇</a><a class="sidebar-item" data-goto="51">第 50 篇</a><a class="sidebar-item" data-goto="52">第 51 篇</a><a class="sidebar-item" data-goto="53">第 52 篇</a><a class="sidebar-item" data-goto="54">第 53 篇</a><a class="sidebar-item" data-goto="55">第 54 篇</a><a class="sidebar-item" data-goto="56">第 55 篇</a><a class="sidebar-item" data-goto="57">第 56 篇</a><a class="sidebar-item" data-goto="58">第 57 篇</a><a class="sidebar-item" data-goto="59">第 58 篇</a><a class="sidebar-item" data-goto="60">第 59 篇</a><a class="sidebar-item" data-goto="61">第 60 篇</a><a class="sidebar-item" data-goto="62">第 61 篇</a><a class="sidebar-item" data-goto="63">第 62 篇</a></div><h3 data-target="sent-group"><span><span class="toggle">▼</span> 五百佳句 <span class="count">(100)</span></span></h3><div class="sidebar-group" id="sent-group"><a class="sidebar-item" data-goto="65">第 1-5 句</a><a class="sidebar-item" data-goto="66">第 6-10 句</a><a class="sidebar-item" data-goto="67">第 11-15 句</a><a class="sidebar-item" data-goto="68">第 16-20 句</a><a class="sidebar-item" data-goto="69">第 21-25 句</a><a class="sidebar-item" data-goto="70">第 26-30 句</a><a class="sidebar-item" data-goto="71">第 31-35 句</a><a class="sidebar-item" data-goto="72">第 36-40 句</a><a class="sidebar-item" data-goto="73">第 41-45 句</a><a class="sidebar-item" data-goto="74">第 46-50 句</a><a class="sidebar-item" data-goto="75">第 51-55 句</a><a class="sidebar-item" data-goto="76">第 56-60 句</a><a class="sidebar-item" data-goto="77">第 61-65 句</a><a class="sidebar-item" data-goto="78">第 66-70 句</a><a class="sidebar-item" data-goto="79">第 71-75 句</a><a class="sidebar-item" data-goto="80">第 76-80 句</a><a class="sidebar-item" data-goto="81">第 81-85 句</a><a class="sidebar-item" data-goto="82">第 86-90 句</a><a class="sidebar-item" data-goto="83">第 91-95 句</a><a class="sidebar-item" data-goto="84">第 96-100 句</a><a class="sidebar-item" data-goto="85">第 101-105 句</a><a class="sidebar-item" data-goto="86">第 106-110 句</a><a class="sidebar-item" data-goto="87">第 111-115 句</a><a class="sidebar-item" data-goto="88">第 116-120 句</a><a class="sidebar-item" data-goto="89">第 121-125 句</a><a class="sidebar-item" data-goto="90">第 126-130 句</a><a class="sidebar-item" data-goto="91">第 131-135 句</a><a class="sidebar-item" data-goto="92">第 136-140 句</a><a class="sidebar-item" data-goto="93">第 141-145 句</a><a class="sidebar-item" data-goto="94">第 146-150 句</a><a class="sidebar-item" data-goto="95">第 151-155 句</a><a class="sidebar-item" data-goto="96">第 156-160 句</a><a class="sidebar-item" data-goto="97">第 161-165 句</a><a class="sidebar-item" data-goto="98">第 166-170 句</a><a class="sidebar-item" data-goto="99">第 171-175 句</a><a class="sidebar-item" data-goto="100">第 176-180 句</a><a class="sidebar-item" data-goto="101">第 181-185 句</a><a class="sidebar-item" data-goto="102">第 186-190 句</a><a class="sidebar-item" data-goto="103">第 191-195 句</a><a class="sidebar-item" data-goto="104">第 196-200 句</a><a class="sidebar-item" data-goto="105">第 201-205 句</a><a class="sidebar-item" data-goto="106">第 206-210 句</a><a class="sidebar-item" data-goto="107">第 211-215 句</a><a class="sidebar-item" data-goto="108">第 216-220 句</a><a class="sidebar-item" data-goto="109">第 221-225 句</a><a class="sidebar-item" data-goto="110">第 226-230 句</a><a class="sidebar-item" data-goto="111">第 231-235 句</a><a class="sidebar-item" data-goto="112">第 236-240 句</a><a class="sidebar-item" data-goto="113">第 241-245 句</a><a class="sidebar-item" data-goto="114">第 246-250 句</a><a class="sidebar-item" data-goto="115">第 251-255 句</a><a class="sidebar-item" data-goto="116">第 256-260 句</a><a class="sidebar-item" data-goto="117">第 261-265 句</a><a class="sidebar-item" data-goto="118">第 266-270 句</a><a class="sidebar-item" data-goto="119">第 271-275 句</a><a class="sidebar-item" data-goto="120">第 276-280 句</a><a class="sidebar-item" data-goto="121">第 281-285 句</a><a class="sidebar-item" data-goto="122">第 286-290 句</a><a class="sidebar-item" data-goto="123">第 291-295 句</a><a class="sidebar-item" data-goto="124">第 296-300 句</a><a class="sidebar-item" data-goto="125">第 301-305 句</a><a class="sidebar-item" data-goto="126">第 306-310 句</a><a class="sidebar-item" data-goto="127">第 311-315 句</a><a class="sidebar-item" data-goto="128">第 316-320 句</a><a class="sidebar-item" data-goto="129">第 321-325 句</a><a class="sidebar-item" data-goto="130">第 326-330 句</a><a class="sidebar-item" data-goto="131">第 331-335 句</a><a class="sidebar-item" data-goto="132">第 336-340 句</a><a class="sidebar-item" data-goto="133">第 341-345 句</a><a class="sidebar-item" data-goto="134">第 346-350 句</a><a class="sidebar-item" data-goto="135">第 351-355 句</a><a class="sidebar-item" data-goto="136">第 356-360 句</a><a class="sidebar-item" data-goto="137">第 361-365 句</a><a class="sidebar-item" data-goto="138">第 366-370 句</a><a class="sidebar-item" data-goto="139">第 371-375 句</a><a class="sidebar-item" data-goto="140">第 376-380 句</a><a class="sidebar-item" data-goto="141">第 381-385 句</a><a class="sidebar-item" data-goto="142">第 386-390 句</a><a class="sidebar-item" data-goto="143">第 391-395 句</a><a class="sidebar-item" data-goto="144">第 396-400 句</a><a class="sidebar-item" data-goto="145">第 401-405 句</a><a class="sidebar-item" data-goto="146">第 406-410 句</a><a class="sidebar-item" data-goto="147">第 411-415 句</a><a class="sidebar-item" data-goto="148">第 416-420 句</a><a class="sidebar-item" data-goto="149">第 421-425 句</a><a class="sidebar-item" data-goto="150">第 426-430 句</a><a class="sidebar-item" data-goto="151">第 431-435 句</a><a class="sidebar-item" data-goto="152">第 436-440 句</a><a class="sidebar-item" data-goto="153">第 441-445 句</a><a class="sidebar-item" data-goto="154">第 446-450 句</a><a class="sidebar-item" data-goto="155">第 451-455 句</a><a class="sidebar-item" data-goto="156">第 456-460 句</a><a class="sidebar-item" data-goto="157">第 461-465 句</a><a class="sidebar-item" data-goto="158">第 466-470 句</a><a class="sidebar-item" data-goto="159">第 471-475 句</a><a class="sidebar-item" data-goto="160">第 476-480 句</a><a class="sidebar-item" data-goto="161">第 481-485 句</a><a class="sidebar-item" data-goto="162">第 486-490 句</a><a class="sidebar-item" data-goto="163">第 491-495 句</a><a class="sidebar-item" data-goto="164">第 496-500 句</a></div>
+</div>
+</div>
+
+<script>
+const totalSlides = 165;
+let currentSlide = 0;
+let sidebarOpen = false;
+
+function showSlide(n) {
+  if (n < 0 || n >= totalSlides) return;
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  const slides = document.querySelectorAll('.slide');
+  slides[n].classList.add('active');
+  currentSlide = n;
+  document.getElementById('pageInfo').textContent = (n+1) + ' / ' + totalSlides;
+  document.getElementById('progressBar').style.width = ((n+1)/totalSlides*100) + '%';
+  document.querySelectorAll('.sidebar-item').forEach((item, i) => {
+    item.classList.toggle('current', i === n);
+  });
+  if (n >= 2 && n < 64) expandGroup('day-group');
+  else if (n >= 65) expandGroup('sent-group');
+  const activeSlide = slides[n];
+  const content = activeSlide.querySelector('.content');
+  if (content) content.scrollTop = 0;
+}
+
+function expandGroup(id) {
+  const group = document.getElementById(id);
+  if (group && group.classList.contains('collapsed')) {
+    group.classList.remove('collapsed');
+    const h3 = document.querySelector('[data-target="' + id + '"]');
+    if (h3) h3.classList.remove('collapsed');
+  }
+}
+
+function toggleGroup(id) {
+  const group = document.getElementById(id);
+  const h3 = document.querySelector('[data-target="' + id + '"]');
+  if (group.classList.contains('collapsed')) {
+    group.classList.remove('collapsed');
+    h3.classList.remove('collapsed');
+    localStorage.setItem('toc-' + id, 'expanded');
+  } else {
+    group.classList.add('collapsed');
+    h3.classList.add('collapsed');
+    localStorage.setItem('toc-' + id, 'collapsed');
+  }
+}
+
+function nextSlide() { showSlide(Math.min(currentSlide + 1, totalSlides - 1)); }
+function prevSlide() { showSlide(Math.max(currentSlide - 1, 0)); }
+
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('open', sidebarOpen);
+}
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+document.querySelectorAll('.sidebar-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const idx = parseInt(item.getAttribute('data-goto'));
+    showSlide(idx);
+  });
+});
+
+document.querySelectorAll('.sidebar h3[data-target]').forEach(h3 => {
+  h3.addEventListener('click', () => {
+    toggleGroup(h3.getAttribute('data-target'));
+  });
+});
+
+['day-group', 'sent-group'].forEach(id => {
+  const state = localStorage.getItem('toc-' + id);
+  if (state === 'collapsed') {
+    const group = document.getElementById(id);
+    if (group) group.classList.add('collapsed');
+    const h3 = document.querySelector('[data-target="' + id + '"]');
+    if (h3) h3.classList.add('collapsed');
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (!sidebarOpen) return;
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.querySelector('.toggle-sidebar');
+  const navBtn = document.querySelector('.nav button');
+  if (sidebar.contains(e.target)) return;
+  if (toggleBtn && toggleBtn.contains(e.target)) return;
+  if (navBtn && navBtn.contains(e.target)) return;
+  toggleSidebar();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
+  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prevSlide(); }
+  else if (e.key === 'Home') { e.preventDefault(); showSlide(0); }
+  else if (e.key === 'End') { e.preventDefault(); showSlide(totalSlides - 1); }
+  else if (e.key === 'Escape') { if (sidebarOpen) toggleSidebar(); }
+  else if (e.key === 'f' || e.key === 'F') { toggleFullscreen(); }
+});
+
+let wheelTimeout;
+document.addEventListener('wheel', (e) => {
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar && sidebar.contains(e.target)) return;
+  e.preventDefault();
+  clearTimeout(wheelTimeout);
+  wheelTimeout = setTimeout(() => {
+    if (e.deltaY > 30) nextSlide();
+    else if (e.deltaY < -30) prevSlide();
+  }, 50);
+}, { passive: false });
+
+let touchStartX = 0;
+document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+document.addEventListener('touchend', (e) => {
+  const touchEndX = e.changedTouches[0].screenX;
+  const dx = touchEndX - touchStartX;
+  if (Math.abs(dx) > 50) { if (dx < 0) nextSlide(); else prevSlide(); }
+});
+
+showSlide(0);
+</script>
+</body>
+</html>
+
+
+
